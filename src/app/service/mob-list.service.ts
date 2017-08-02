@@ -1,4 +1,5 @@
 /** An example database that the data source uses to retrieve data for the table. */
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { DataSource } from '@angular/cdk';
@@ -23,7 +24,7 @@ const TASKS = ['Unix/Windows team',
 'OCC to patch and reboot',
 'ESB start up'];
 
-export interface MobData {
+export class MobData {
     task: string;
     application: string;
     startTime: string;
@@ -34,20 +35,23 @@ export interface MobData {
     anything2: string;
 
 }
-
-
-export class ExampleDatabase {
+class MobDatabase {
     /** Stream that emits whenever the data has been modified. */
     dataChange: BehaviorSubject<MobData[]> = new BehaviorSubject<MobData[]>([]);
     get data(): MobData[] { return this.dataChange.value; }
 
     constructor() {
         // Fill up the database with 100 users.
-        for (let i = 0; i < 100; i++) { this.addMobData(); }
+        // for (let i = 0; i < 100; i++) { this.addMockMobData(); }
     }
-
+    addMobData(mobData: MobData) {
+        const copiedData = this.data.slice();
+        copiedData.push(mobData);
+        console.log(copiedData);
+        this.dataChange.next(copiedData);
+    }
     /** Adds a new user to the database. */
-    addMobData() {
+    addMockMobData() {
         const copiedData = this.data.slice();
         copiedData.push(this.createNewMobData());
         this.dataChange.next(copiedData);
@@ -80,8 +84,9 @@ export class ExampleDatabase {
  * the underlying data. Instead, it only needs to take the data and send the table exactly what
  * should be rendered.
  */
-export class ExampleDataSource extends DataSource<any> {
-    constructor(private _exampleDatabase: ExampleDatabase) {
+@Injectable()
+class MobDataSource extends DataSource<any> {
+    constructor(private _exampleDatabase: MobDatabase) {
         super();
     }
 
@@ -91,4 +96,21 @@ export class ExampleDataSource extends DataSource<any> {
     }
 
     disconnect() { }
+}
+
+
+
+export class MobListService {
+    private _mbDatabase;
+    private _mbDataSource;
+    constructor() {
+        this._mbDatabase = new MobDatabase();
+        this._mbDataSource = new MobDataSource(this._mbDatabase);
+    }
+    get mbDataSource(){
+        return this._mbDataSource;
+    }
+    addMobData(mobData: MobData) {
+        this._mbDatabase.addMobData(mobData);
+    }
 }

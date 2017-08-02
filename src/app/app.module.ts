@@ -10,6 +10,7 @@ import { AddMobComponent } from './add-mob/add-mob.component';
 import { AppMaterialModule } from './app-material.module';
 
 import { AppComponent } from './app.component';
+import { MobListService } from './service/mob-list.service';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCheckboxModule} from '@angular/material';
@@ -28,7 +29,7 @@ import 'hammerjs';
     BrowserAnimationsModule,
     AppMaterialModule
   ],
-  providers: [],
+  providers: [MobListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
