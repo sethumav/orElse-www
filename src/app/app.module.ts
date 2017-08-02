@@ -7,8 +7,13 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AddMobComponent } from './add-mob/add-mob.component';
+import { AppMaterialModule } from './app-material.module';
 
 import { AppComponent } from './app.component';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MdButtonModule, MdCheckboxModule} from '@angular/material';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,9 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    BrowserAnimationsModule,
+    AppMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
