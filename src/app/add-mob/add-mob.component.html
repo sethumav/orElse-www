@@ -29,8 +29,63 @@
       <input mdInput placeholder="Anything1" />
     </md-input-container>
     <md-input-container>
-      <input mdInput placeholder="Anything2"/>
+      <input mdInput placeholder="Anything2" />
     </md-input-container>
   </div>
   <button md-raised-button>Add</button>
 </form>
+<div class="mobDataTableContainer mat-elevation-z8">
+  <md-table #table [dataSource]="dataSource">
+
+    <!-- Task Column -->
+    <ng-container cdkColumnDef="task">
+      <md-header-cell *cdkHeaderCellDef> Task </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.task}} </md-cell>
+    </ng-container>
+
+    <!-- Application Column -->
+    <ng-container cdkColumnDef="application">
+      <md-header-cell *cdkHeaderCellDef> Application </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.application}} </md-cell>
+    </ng-container>
+
+    <!-- Start time Column -->
+    <ng-container cdkColumnDef="startTime">
+      <md-header-cell *cdkHeaderCellDef> Start Time </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.startTime}} </md-cell>
+    </ng-container>
+
+    <!-- End time Column -->
+    <ng-container cdkColumnDef="endTime">
+      <md-header-cell *cdkHeaderCellDef> End Time </md-header-cell>
+      <md-cell *cdkCellDef="let row" > {{row.endTime}} </md-cell>
+    </ng-container>
+
+    <!-- Resource Group Column -->
+    <ng-container cdkColumnDef="resourceGroup">
+      <md-header-cell *cdkHeaderCellDef> Resource Group </md-header-cell>
+      <md-cell *cdkCellDef="let row" > {{row.resourceGroup}} </md-cell>
+    </ng-container>
+
+    <!-- End time Column -->
+    <ng-container cdkColumnDef="anything">
+      <md-header-cell *cdkHeaderCellDef> Anything </md-header-cell>
+      <md-cell *cdkCellDef="let row" > {{row.anything}} </md-cell>
+    </ng-container>
+
+    <!-- End time Column -->
+    <ng-container cdkColumnDef="anything1">
+      <md-header-cell *cdkHeaderCellDef> Anything 1 </md-header-cell>
+      <md-cell *cdkCellDef="let row" > {{row.anything1}} </md-cell>
+    </ng-container>
+
+    <!-- End time Column -->
+    <ng-container cdkColumnDef="anything2">
+      <md-header-cell *cdkHeaderCellDef> Anything 2 </md-header-cell>
+      <md-cell *cdkCellDef="let row" > {{row.anything2}} </md-cell>
+    </ng-container>
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>

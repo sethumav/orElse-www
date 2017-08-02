@@ -1,6 +1,35 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .content {
-     width:1000px;
-     margin:0 auto;
+  padding: 20px 30px 20px 30px;
+}
 
+
+/* Structure */
+
+.mobDataTableContainer {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: 20px;
+}
+
+.mat-table {
+  overflow: auto;
+}
+
+md-row:nth-child(even) {
+  background: #CCC
+}
+
+md-row::nth-child(odd) {
+  background: #FFF
 }
