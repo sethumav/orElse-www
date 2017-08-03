@@ -7,15 +7,13 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 
-export class RespPerson{
-    constructor(firstName: string, lastName: string, email: string){
-        this.firstName = firstName;
-        this.lastName = lastName;
+export class ResponsiblePerson {
+    constructor(name: string, email: string){
         this.email = email;
+        this.name = name;
     }
-    firstName: string;
-    lastName: string;
     email: string;
+    name: string;
 }
 export class MobData {
     section: string;
@@ -27,7 +25,7 @@ export class MobData {
     anything: string;
     anything1: string;
     anything2: string;
-    respPersons: RespPerson[];
+    respPersons: ResponsiblePerson[];
 
 }
 class MobDatabase {
@@ -90,7 +88,7 @@ export class MobListService {
         for( let i in this.data){ 
             this.data[i].respPersons = [];
             for(let n = 0; n < 3; n++){
-                this.data[i].respPersons.push(new RespPerson('James', 'Bond', 'james_bond@wsib.on.ca'));
+                this.data[i].respPersons.push(new ResponsiblePerson('James Bond', 'james_bond@wsib.on.ca'));
             }
         }
     }

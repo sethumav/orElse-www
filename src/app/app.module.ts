@@ -13,6 +13,7 @@ import { ReviewComponent } from './review/review.component';
 
 import { AppComponent } from './app.component';
 import { MobListService } from './service/mob-list.service';
+import { EmailService } from './service/email.service';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCheckboxModule} from '@angular/material';
@@ -32,7 +33,7 @@ import 'hammerjs';
     BrowserAnimationsModule,
     AppMaterialModule
   ],
-  providers: [MobListService],
+  providers: [MobListService, EmailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

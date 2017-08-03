@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { MobListService, MobData } from '../service/mob-list.service';
 import { DataSource } from '@angular/cdk';
+import { EmailService } from '../service/email.service';
 
 @Component({
     templateUrl: './review.component.html',
@@ -10,12 +11,14 @@ import { DataSource } from '@angular/cdk';
 export class ReviewComponent implements AfterViewChecked {
     private tableUpdated = false;
     private mobListService: MobListService;
+    private emailService: EmailService;
     private dataSource: DataSource<MobData>;
     displayedColumns = ['section', 'task', 'application', 'respPerson'];
 
-    constructor(mobListService: MobListService) {
+    constructor(mobListService: MobListService, emailService: EmailService) {
         this.mobListService = mobListService;
         this.dataSource = this.mobListService.mbDataSource;
+        this.emailService =emailService;
         console.log(this.dataSource);
     }
     ngAfterViewChecked() {
@@ -30,6 +33,10 @@ export class ReviewComponent implements AfterViewChecked {
         }
     }
     sendEmails() {
-        
+        let mobData: MobData;
+        for( let i in this.mobListService.data){ 
+            mobData = this.mobListService.data[i];
+            this.emailService.sendEmails( mobData.application, mobData.task, mobData.respPersons);
+        }
     }
 }
