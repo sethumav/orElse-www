@@ -7,23 +7,16 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 
-/** Constants used to fill up our data base. */
-const TASKS = ['Unix/Windows team',
-'LDAP health check', 'CGI Database Team',
-'CGI Oracle DBA',
-'Middleware to start',
-'Middleware Start Portal on Leg 2',
-'Guidwire Applications',
-'AM Int/Ext Server', 'IM Int/Ext Server',
-'Jenkins', 'Ignite Application server',
-'Repository Mgmt Server',
-'BMC – RLM Application Server + Validation',
-'CGI Network to remove maintenance page',
-'email status update to WSIB/CGI',
-'WSIB App team to Start Cognos',
-'OCC to patch and reboot',
-'ESB start up'];
-
+export class RespPerson{
+    constructor(firstName: string, lastName: string, email: string){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+    firstName: string;
+    lastName: string;
+    email: string;
+}
 export class MobData {
     section: string;
     task: string;
@@ -34,6 +27,7 @@ export class MobData {
     anything: string;
     anything1: string;
     anything2: string;
+    respPersons: RespPerson[];
 
 }
 class MobDatabase {
@@ -51,32 +45,6 @@ class MobDatabase {
         console.log(copiedData);
         this.dataChange.next(copiedData);
     }
-    /** Adds a new user to the database. */
-    addMockMobData() {
-        const copiedData = this.data.slice();
-        copiedData.push(this.createNewMobData());
-        this.dataChange.next(copiedData);
-    }
-
-    /** Builds and returns a new User. */
-    private createNewMobData() {
-        const task =
-            TASKS[Math.round(Math.random() * (TASKS.length - 1))] + ' ' +
-            TASKS[Math.round(Math.random() * (TASKS.length - 1))].charAt(0) + '.';
-
-        return {
-            // id: (this.data.length + 1).toString(),
-            section: (Math.round(Math.random() * 59).toString()),
-            task: task,
-            application: 'app_' + task,
-            startTime: Math.round(Math.random() * 23).toString() +  ':'  + Math.round(Math.random() * 59).toString(),
-            endTime: Math.round(Math.random() * 23).toString() +  ':'  + Math.round(Math.random() * 59).toString(),
-            resourceGroup: 'rg_' + task,
-            anything: 'anything_' + task,
-            anything1: 'anything1_' + task,
-            anything2: 'anything2_' + task
-        };
-    }
 }
 
 /**
@@ -86,7 +54,7 @@ class MobDatabase {
  * the underlying data. Instead, it only needs to take the data and send the table exactly what
  * should be rendered.
  */
-@Injectable()
+
 class MobDataSource extends DataSource<any> {
     constructor(private _exampleDatabase: MobDatabase) {
         super();
@@ -101,7 +69,7 @@ class MobDataSource extends DataSource<any> {
 }
 
 
-
+@Injectable()
 export class MobListService {
     private _mbDatabase;
     private _mbDataSource;
@@ -114,5 +82,19 @@ export class MobListService {
     }
     addMobData(mobData: MobData) {
         this._mbDatabase.addMobData(mobData);
+    }
+    get data(): MobData[]{
+        return this._mbDatabase.data;
+    }
+    updateRespPerson() {
+        for( let i in this.data){ 
+            this.data[i].respPersons = [];
+            for(let n = 0; n < 3; n++){
+                this.data[i].respPersons.push(new RespPerson('James', 'Bond', 'james_bond@wsib.on.ca'));
+            }
+        }
+    }
+    upate(){
+        this._mbDatabase.dataChange.next(this._mbDatabase.data);
     }
 }

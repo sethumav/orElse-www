@@ -6,8 +6,10 @@ import { HttpModule } from '@angular/http';
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { AddMobComponent } from './add-mob/add-mob.component';
 import { AppMaterialModule } from './app-material.module';
+
+import { AddMobComponent } from './add-mob/add-mob.component';
+import { ReviewComponent } from './review/review.component';
 
 import { AppComponent } from './app.component';
 import { MobListService } from './service/mob-list.service';
@@ -19,7 +21,8 @@ import 'hammerjs';
 @NgModule({
   declarations: [
     AppComponent,
-    AddMobComponent
+    AddMobComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
