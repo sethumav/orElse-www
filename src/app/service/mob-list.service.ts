@@ -87,9 +87,9 @@ export class MobListService {
     updateRespPerson() {
         for( let i in this.data){ 
             this.data[i].respPersons = [];
-            for(let n = 0; n < 3; n++){
-                this.data[i].respPersons.push(new ResponsiblePerson('James Bond', 'james_bond@wsib.on.ca'));
-            }
+            this.data[i].respPersons.push(new ResponsiblePerson('Kevin Chiu', 'Kevin_Chiu@wsib.on.ca'));
+            this.data[i].respPersons.push(new ResponsiblePerson('Daniel Yinanc', 'Daniel_Yinanc@wsib.on.ca'));
+            this.data[i].respPersons.push(new ResponsiblePerson('Ming Zhu', 'ming_zhu@wsib.on.ca'));
         }
     }
     upate(){

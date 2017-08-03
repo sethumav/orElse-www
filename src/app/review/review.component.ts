@@ -4,6 +4,8 @@ import { MobListService, MobData } from '../service/mob-list.service';
 import { DataSource } from '@angular/cdk';
 import { EmailService } from '../service/email.service';
 
+import 'rxjs/add/operator/toPromise';
+
 @Component({
     templateUrl: './review.component.html',
     styleUrls: ['./review.component.css']
