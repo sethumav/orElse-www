@@ -1,6 +1,9 @@
 <h1>Add new mob</h1>
 <div>
   <md-input-container>
+    <input [(ngModel)]="mobData.section" mdInput placeholder="Section" />
+  </md-input-container>
+  <md-input-container>
     <input [(ngModel)]="mobData.task" mdInput placeholder="Task" />
   </md-input-container>
 </div>
@@ -31,9 +34,17 @@
     <input [(ngModel)]="mobData.anything2" mdInput placeholder="Anything2" />
   </md-input-container>
 </div>
-<button md-raised-button (click)="addRow()">Add</button>
+<div class="buttonContainer">
+  <button class="primary" md-raised-button (click)="addRow()">Add</button>
+<div>
 <div class="mobDataTableContainer mat-elevation-z8">
   <md-table #table [dataSource]="dataSource">
+
+    <!-- Task Column -->
+    <ng-container cdkColumnDef="section">
+      <md-header-cell *cdkHeaderCellDef> Section </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.section}} </md-cell>
+    </ng-container>
 
     <!-- Task Column -->
     <ng-container cdkColumnDef="task">
@@ -86,4 +97,7 @@
     <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
     <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table>
+</div>
+<div class="buttonContainer">
+  <button class="primary right" md-raised-button>Submit</button>
 </div>

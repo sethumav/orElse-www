@@ -11,7 +11,7 @@ export class AddMobComponent{
   private mobListService: MobListService;
   private mobData: MobData;
   private dataSource: DataSource<MobData>;
-  displayedColumns = ['task', 'application', 'startTime', 'endTime', 'resourceGroup', 'anything', 'anything1', 'anything2'];
+  displayedColumns = ['section', 'task', 'application', 'startTime', 'endTime', 'resourceGroup', 'anything', 'anything1', 'anything2'];
 
   constructor(mobListService: MobListService){
     this.mobListService = mobListService;

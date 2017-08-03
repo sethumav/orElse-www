@@ -25,6 +25,7 @@ const TASKS = ['Unix/Windows team',
 'ESB start up'];
 
 export class MobData {
+    section: string;
     task: string;
     application: string;
     startTime: string;
@@ -65,6 +66,7 @@ class MobDatabase {
 
         return {
             // id: (this.data.length + 1).toString(),
+            section: (Math.round(Math.random() * 59).toString()),
             task: task,
             application: 'app_' + task,
             startTime: Math.round(Math.random() * 23).toString() +  ':'  + Math.round(Math.random() * 59).toString(),

@@ -33,3 +33,12 @@ md-row:nth-child(even) {
 md-row::nth-child(odd) {
   background: #FFF
 }
+
+button.primary{
+  background-color: #149717;
+    color: white;
+}
+div.buttonContainer button.right{
+  margin-top: 15px;
+  float: right;
+}
