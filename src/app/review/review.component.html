@@ -1,4 +1,4 @@
-<div class="mobDataTableContainer mat-elevation-z8">
+<div (mousemove)="update()" class="mobDataTableContainer mat-elevation-z8">
   <md-table #table [dataSource]="dataSource">
     <!-- Task Column -->
     <ng-container cdkColumnDef="section">
@@ -37,5 +37,5 @@
   </md-table>
 </div>
 <div class="buttonContainer">
-    <button class="primary right" (click)="update()" md-raised-button>OK</button>
+    <button class="primary right" (click)="sendEmails()" md-raised-button>Send Emails</button>
 </div>
