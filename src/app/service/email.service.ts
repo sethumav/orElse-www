@@ -23,14 +23,15 @@ export class EmailService {
         this.from = new ResponsiblePerson('Brain Trust', 'brian_trust@wsib.on.ca');
         this.http = http;
     }
-    sendEmails(subject: string, emailBody: string, emailNameAddresses: ResponsiblePerson[]): Promise<boolean>{
+    sendEmails(subject: string, emailBody: string, emailNameAddresses: ResponsiblePerson[]): Promise<boolean[]> {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         return this.http
             .post('http://localhost:8080/v1/email/send',
                 JSON.stringify(new EmailRequest(this.from, subject, emailBody, emailNameAddresses)), { headers: headers })
             .toPromise()
             .then((response) => {
-                return true;
+                console.log(response);
+                return response.json().data as boolean[];
             })
             .catch(this.handleError);
     }

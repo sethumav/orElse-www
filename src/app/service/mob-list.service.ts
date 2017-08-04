@@ -11,9 +11,11 @@ export class ResponsiblePerson {
     constructor(name: string, email: string){
         this.email = email;
         this.name = name;
+        this.sent = false;
     }
     email: string;
     name: string;
+    sent: boolean;
 }
 export class MobData {
     section: string;
@@ -87,6 +89,8 @@ export class MobListService {
     updateRespPerson() {
         for( let i in this.data){ 
             this.data[i].respPersons = [];
+            this.data[i].respPersons.push(new ResponsiblePerson('Bohdan Zaremba', 'Bohdan_Zaremba@wsib.on.ca'));
+            this.data[i].respPersons.push(new ResponsiblePerson('Nigel Persad', 'Nigel_Persad@wsib.on.ca'));
             this.data[i].respPersons.push(new ResponsiblePerson('Kevin Chiu', 'Kevin_Chiu@wsib.on.ca'));
             this.data[i].respPersons.push(new ResponsiblePerson('Daniel Yinanc', 'Daniel_Yinanc@wsib.on.ca'));
             this.data[i].respPersons.push(new ResponsiblePerson('Ming Zhu', 'ming_zhu@wsib.on.ca'));
