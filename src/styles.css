@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.content {
+  padding: 20px 30px 20px 30px;
+}
+
+
+/* Structure */
+
+.mobDataTableContainer {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: 20px;
+}
+
+.mat-table {
+  overflow: auto;
+}
+
+md-row:nth-child(even) {
+  background: #CCC
+}
+
+md-row::nth-child(odd) {
+  background: #FFF
+}
+
+button.primary{
+  background-color: #149717;
+    color: white;
+}
+div.buttonContainer button.right{
+  margin-top: 15px;
+  float: right;
+}

@@ -1,0 +1,41 @@
+<div (mousemove)="update()" class="mobDataTableContainer mat-elevation-z8">
+  <md-table #table [dataSource]="dataSource">
+    <!-- Task Column -->
+    <ng-container cdkColumnDef="section">
+      <md-header-cell *cdkHeaderCellDef> Section </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.section}} </md-cell>
+    </ng-container>
+
+    <!-- Task Column -->
+    <ng-container cdkColumnDef="task">
+      <md-header-cell *cdkHeaderCellDef> Task </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.task}} </md-cell>
+    </ng-container>
+
+    <!-- Application Column -->
+    <ng-container cdkColumnDef="application">
+      <md-header-cell *cdkHeaderCellDef> Application </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.application}} </md-cell>
+    </ng-container>
+
+    <!-- End time Column -->
+    <ng-container cdkColumnDef="respPerson">
+      <md-header-cell *cdkHeaderCellDef> Responsible Person </md-header-cell>
+      <md-cell *cdkCellDef="let row">
+        <div *ngFor="let respPerson of row.respPersons">
+            <div>
+                {{respPerson.name}}&#160;&lt;{{respPerson.email}}&gt;
+            </div>
+            <div> 
+            </div>
+        </div>
+      </md-cell>
+    </ng-container>
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>
+<div class="buttonContainer">
+    <button class="primary right" (click)="sendEmails()" md-raised-button>Send Emails</button>
+</div>
