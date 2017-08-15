@@ -14,12 +14,8 @@
   <md-input-container>
     <input [(ngModel)]="mobData.application" mdInput placeholder="Application" />
   </md-input-container>
-  <md-input-container>
-    <input [(ngModel)]="mobData.startTime" mdInput placeholder="Start Time" />
-  </md-input-container>
-  <md-input-container>
-    <input [(ngModel)]="mobData.endTime" mdInput placeholder="End Time" />
-  </md-input-container>
+  <p-calendar [(ngModel)]="mobData.startTime" readonlyInput="true" placeholder="Start Time" showTime="showTime" hourFormat="24"></p-calendar>
+  <p-calendar [(ngModel)]="mobData.endTime" readonlyInput="true" placeholder="End Time" showTime="showTime" hourFormat="24"></p-calendar>
 </div>
 <div>
   <md-input-container>
@@ -70,13 +66,13 @@
     <!-- Start time Column -->
     <ng-container cdkColumnDef="startTime">
       <md-header-cell *cdkHeaderCellDef> Start Time </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.startTime}} </md-cell>
+      <md-cell *cdkCellDef="let row"> {{ row.startTime | date:'medium' }} </md-cell>
     </ng-container>
 
     <!-- End time Column -->
     <ng-container cdkColumnDef="endTime">
       <md-header-cell *cdkHeaderCellDef> End Time </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.endTime}} </md-cell>
+      <md-cell *cdkCellDef="let row"> {{ row.endTime | date:'medium' }} </md-cell>
     </ng-container>
 
     <!-- Resource Group Column -->

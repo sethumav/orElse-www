@@ -17,6 +17,7 @@ import { EmailService } from './service/email.service';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCheckboxModule} from '@angular/material';
+import {CalendarModule} from 'primeng/primeng';
 import 'hammerjs';
 
 @NgModule({
@@ -31,7 +32,8 @@ import 'hammerjs';
     AppRoutingModule,
     HttpModule,
     BrowserAnimationsModule,
-    AppMaterialModule
+    AppMaterialModule,
+    CalendarModule
   ],
   providers: [MobListService, EmailService],
   bootstrap: [AppComponent]
