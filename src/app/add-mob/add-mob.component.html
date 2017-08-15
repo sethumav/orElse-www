@@ -6,6 +6,9 @@
   <md-input-container>
     <input [(ngModel)]="mobData.task" mdInput placeholder="Task" />
   </md-input-container>
+  <md-input-container>
+    <input [(ngModel)]="mobData.server" mdInput placeholder="Server" />
+  </md-input-container>
 </div>
 <div>
   <md-input-container>
@@ -50,6 +53,12 @@
     <ng-container cdkColumnDef="task">
       <md-header-cell *cdkHeaderCellDef> Task </md-header-cell>
       <md-cell *cdkCellDef="let row"> {{row.task}} </md-cell>
+    </ng-container>
+
+    <!-- Task Column -->
+    <ng-container cdkColumnDef="server">
+      <md-header-cell *cdkHeaderCellDef> Server </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.server}} </md-cell>
     </ng-container>
 
     <!-- Application Column -->
