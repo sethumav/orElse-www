@@ -23,6 +23,7 @@ export class MobData {
     application: string;
     startTime: string;
     endTime: string;
+    server: string;
     resourceGroup: string;
     anything: string;
     anything1: string;
