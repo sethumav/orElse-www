@@ -43,3 +43,4 @@ Thumbs.db
 
 #Protractor logs
 local.log
+*.err
