@@ -7,7 +7,7 @@
     <input [(ngModel)]="mobData.task" mdInput placeholder="Task" />
   </md-input-container>
   <md-input-container>
-    <input [(ngModel)]="mobData.server" mdInput placeholder="Server" />
+    <input [(ngModel)]="mobData.environment" mdInput placeholder="Environment" />
   </md-input-container>
 </div>
 <div>
@@ -52,9 +52,9 @@
     </ng-container>
 
     <!-- Task Column -->
-    <ng-container cdkColumnDef="server">
-      <md-header-cell *cdkHeaderCellDef> Server </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.server}} </md-cell>
+    <ng-container cdkColumnDef="environment">
+      <md-header-cell *cdkHeaderCellDef> Environment </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.environment}} </md-cell>
     </ng-container>
 
     <!-- Application Column -->
@@ -105,4 +105,10 @@
 </div>
 <div class="buttonContainer">
   <button class="primary right" (click)="submit()" md-raised-button>Submit</button>
+  <md-progress-spinner *ngIf="loading"
+        class="buttonSideSpinner"
+        [color]="color"
+        [mode]="mode"
+        [value]="value">
+    </md-progress-spinner>
 </div>

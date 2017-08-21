@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  emailService: 'http://localhost',
+  responsiblePersonService: 'http://localhost'
 };

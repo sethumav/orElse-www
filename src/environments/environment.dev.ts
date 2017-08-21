@@ -5,11 +5,10 @@
 
 export const environment = {
   production: false,
-  emailService: 'http://localhost:8080/v1/email/send',
+  emailService: 'http://localhost',
   responsiblePersonService: {
-    url: 'http://localhost:8090/getResponsiblePersonByApplicationAndEnvironment',
+    url: 'http://localhost:8080/getResponsiblePersonByApplicationAndEnvironment',
     appParam: 'application',
     envParam: 'environment'
   }
 };
-

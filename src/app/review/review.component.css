@@ -2,3 +2,13 @@
     height: auto;
     padding: 5px 0px;
 }
+.respPersonCol div.email{
+    float: left;
+}
+.respPersonCol div.emailSendStatus{
+    float: right;
+    padding-right: 30px;
+}
+.emailSending{
+  height: 20px;
+}

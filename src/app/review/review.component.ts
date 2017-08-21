@@ -11,6 +11,10 @@ import 'rxjs/add/operator/toPromise';
     styleUrls: ['./review.component.css']
 })
 export class ReviewComponent implements AfterViewChecked {
+    color = 'primary';
+    mode = 'indeterminate';
+    value = 50;
+    private sendingEmails = false;
     private tableUpdated = false;
     private mobListService: MobListService;
     private emailService: EmailService;
@@ -35,10 +39,11 @@ export class ReviewComponent implements AfterViewChecked {
         }
     }
     sendEmails() {
+        this.sendingEmails = true;
         let mobData: MobData;
         for( let i in this.mobListService.data){ 
             mobData = this.mobListService.data[i];
-            this.emailService.sendEmails( mobData.application, mobData.task, mobData.respPersons);
+            this.emailService.sendEmails( mobData.application, JSON.stringify(mobData), mobData.respPersons);
         }
     }
 }
