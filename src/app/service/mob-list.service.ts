@@ -92,22 +92,25 @@ export class MobListService {
     get data(): MobData[]{
         return this._mbDatabase.data;
     }
-    updateRespPerson() {
+    getRespPerson() {
         const requests = [];
-        let rps: ResponsiblePerson[];
         for (const key of Object.keys(this.data)){
             requests.push(this.getResponsiblePersonRequest(this.data[key]));
         }
-        Observable.forkJoin(requests).subscribe(results => {
-            for (let i = 0; i < requests.length; i++) {
-                rps = [];
-                for (const p in results[i]) {
-                    rps.push(new ResponsiblePerson(results[i][p]['name'], results[i][p]['email']));
-                }
-                this.data[i].respPersons = rps;
-            }
-        });
+        return Observable.forkJoin(requests);
     }
+
+    updateRespPerson(results) {
+        let rps: ResponsiblePerson[];
+        for (let i = 0; i < results.length; i++) {
+            rps = [];
+            for (const p in results[i]) {
+                rps.push(new ResponsiblePerson(results[i][p]['name'], results[i][p]['email']));
+            }
+            this.data[i].respPersons = rps;
+        }
+    }
+
     upate() {
         this._mbDatabase.dataChange.next(this._mbDatabase.data);
     }

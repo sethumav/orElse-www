@@ -30,7 +30,10 @@ export class AddMobComponent{
   }
 
   submit() {
-    this.mobListService.updateRespPerson();
-    this.router.navigate(['/review']);
+    this.mobListService.getRespPerson()
+        .subscribe(results => {
+          this.mobListService.updateRespPerson(results);
+          this.router.navigate(['/review']);
+        });
   }
 }
