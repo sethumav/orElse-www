@@ -7,7 +7,9 @@ export const environment = {
   production: false,
   emailService: 'http://localhost',
   responsiblePersonService: {
-    url: 'http://localhost',
+    url: 'http://localhost:8080/getResponsiblePersonByApplicationAndEnvironment',
     appParam: 'application',
     envParam: 'environment'
+  }
 };
+

@@ -6,6 +6,7 @@ import { DataSource } from '@angular/cdk';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/forkJoin';
 import { environment } from '../../environments/environment';
 import { Headers, Http, Response } from '@angular/http';
 
@@ -45,7 +46,7 @@ class MobDatabase {
     addMobData(mobData: MobData) {
         const copiedData = this.data.slice();
         copiedData.push(mobData);
-        console.log(copiedData);
+        // console.log(copiedData);
         this.dataChange.next(copiedData);
     }
 }
@@ -92,34 +93,30 @@ export class MobListService {
         return this._mbDatabase.data;
     }
     updateRespPerson() {
-        for ( let i in this.data) {
-            this.getResponsiblePerson(data[i]);
-        //     this.data[i].respPersons = [];
-        //     this.data[i].respPersons.push(new ResponsiblePerson('Bohdan Zaremba', 'Bohdan_Zaremba@wsib.on.ca'));
-        //     this.data[i].respPersons.push(new ResponsiblePerson('Nigel Persad', 'Nigel_Persad@wsib.on.ca'));
-        //     this.data[i].respPersons.push(new ResponsiblePerson('Kevin Chiu', 'Kevin_Chiu@wsib.on.ca'));
-        //     this.data[i].respPersons.push(new ResponsiblePerson('Daniel Yinanc', 'Daniel_Yinanc@wsib.on.ca'));
-        //     this.data[i].respPersons.push(new ResponsiblePerson('Ming Zhu', 'ming_zhu@wsib.on.ca'));
+        const requests = [];
+        let rps: ResponsiblePerson[];
+        for (const key of Object.keys(this.data)){
+            requests.push(this.getResponsiblePersonRequest(this.data[key]));
         }
+        Observable.forkJoin(requests).subscribe(results => {
+            for (let i = 0; i < requests.length; i++) {
+                rps = [];
+                for (const p in results[i]) {
+                    rps.push(new ResponsiblePerson(results[i][p]['name'], results[i][p]['email']));
+                }
+                this.data[i].respPersons = rps;
+            }
+        });
     }
     upate() {
         this._mbDatabase.dataChange.next(this._mbDatabase.data);
     }
-    getResponsiblePerson(mobData: MobData) {
+    getResponsiblePersonRequest(mobData: MobData) {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         return this.http
             .get(environment.responsiblePersonService.url
                 + '?' + environment.responsiblePersonService.appParam + '=' + mobData.application
                 + '&' + environment.responsiblePersonService.envParam + '=' + mobData.environment)
-            .toPromise()
-            .then((response) => {
-                // set returned resposible person in here
-                mobData.respPersons = [];
-            })
-            .catch(this.handleError);
-    }
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
+            .map(res => res.json());
     }
 }
