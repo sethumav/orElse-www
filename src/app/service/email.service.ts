@@ -21,7 +21,7 @@ export class EmailService {
     private from: ResponsiblePerson;
     private http: Http;
     constructor(http: Http) {
-        this.from = new ResponsiblePerson('Brain Trust', 'brian_trust@wsib.on.ca');
+        this.from = new ResponsiblePerson('Brain Trust', 'braintrust@wsib.on.ca');
         this.http = http;
     }
     sendEmails(subject: string, emailBody: string, emailNameAddresses: ResponsiblePerson[]): Promise<boolean[]> {

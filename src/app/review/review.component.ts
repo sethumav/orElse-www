@@ -43,7 +43,7 @@ export class ReviewComponent implements AfterViewChecked {
         let mobData: MobData;
         for( let i in this.mobListService.data){ 
             mobData = this.mobListService.data[i];
-            this.emailService.sendEmails( mobData.application, mobData.task, mobData.respPersons);
+            this.emailService.sendEmails( mobData.application, JSON.stringify(mobData), mobData.respPersons);
         }
     }
 }
