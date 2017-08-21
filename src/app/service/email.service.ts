@@ -2,6 +2,7 @@
 import { ResponsiblePerson } from './mob-list.service';
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
+import { environment } from '../../environments/environment';
 export class EmailRequest {
     from: ResponsiblePerson;
     subject: string;
@@ -26,7 +27,7 @@ export class EmailService {
     sendEmails(subject: string, emailBody: string, emailNameAddresses: ResponsiblePerson[]): Promise<boolean[]> {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         return this.http
-            .post('http://localhost:8080/v1/email/send',
+            .post(environment.emailService,
                 JSON.stringify(new EmailRequest(this.from, subject, emailBody, emailNameAddresses)), { headers: headers })
             .toPromise()
             .then((response) => {

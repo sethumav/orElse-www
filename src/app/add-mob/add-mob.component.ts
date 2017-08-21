@@ -11,7 +11,8 @@ export class AddMobComponent{
   private mobListService: MobListService;
   private mobData: MobData;
   private dataSource: DataSource<MobData>;
-  displayedColumns = ['section', 'task', 'server', 'application', 'startTime', 'endTime', 'resourceGroup', 'anything', 'anything1', 'anything2'];
+  displayedColumns = ['section', 'task', 'environment', 'application',
+  'startTime', 'endTime', 'resourceGroup', 'anything', 'anything1', 'anything2'];
 
   constructor(
     private router: Router,

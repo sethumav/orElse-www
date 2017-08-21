@@ -6,6 +6,8 @@ import { DataSource } from '@angular/cdk';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
+import { Headers, Http, Response } from '@angular/http';
 
 export class ResponsiblePerson {
     constructor(name: string, email: string){
@@ -23,7 +25,7 @@ export class MobData {
     application: string;
     startTime: string;
     endTime: string;
-    server: string;
+    environment: string;
     resourceGroup: string;
     anything: string;
     anything1: string;
@@ -74,9 +76,11 @@ class MobDataSource extends DataSource<any> {
 export class MobListService {
     private _mbDatabase;
     private _mbDataSource;
-    constructor() {
+    private http: Http;
+    constructor(http: Http) {
         this._mbDatabase = new MobDatabase();
         this._mbDataSource = new MobDataSource(this._mbDatabase);
+        this.http = http;
     }
     get mbDataSource(){
         return this._mbDataSource;
@@ -88,16 +92,34 @@ export class MobListService {
         return this._mbDatabase.data;
     }
     updateRespPerson() {
-        for( let i in this.data){ 
-            this.data[i].respPersons = [];
-            this.data[i].respPersons.push(new ResponsiblePerson('Bohdan Zaremba', 'Bohdan_Zaremba@wsib.on.ca'));
-            this.data[i].respPersons.push(new ResponsiblePerson('Nigel Persad', 'Nigel_Persad@wsib.on.ca'));
-            this.data[i].respPersons.push(new ResponsiblePerson('Kevin Chiu', 'Kevin_Chiu@wsib.on.ca'));
-            this.data[i].respPersons.push(new ResponsiblePerson('Daniel Yinanc', 'Daniel_Yinanc@wsib.on.ca'));
-            this.data[i].respPersons.push(new ResponsiblePerson('Ming Zhu', 'ming_zhu@wsib.on.ca'));
+        for ( let i in this.data) {
+            this.getResponsiblePerson(data[i]);
+        //     this.data[i].respPersons = [];
+        //     this.data[i].respPersons.push(new ResponsiblePerson('Bohdan Zaremba', 'Bohdan_Zaremba@wsib.on.ca'));
+        //     this.data[i].respPersons.push(new ResponsiblePerson('Nigel Persad', 'Nigel_Persad@wsib.on.ca'));
+        //     this.data[i].respPersons.push(new ResponsiblePerson('Kevin Chiu', 'Kevin_Chiu@wsib.on.ca'));
+        //     this.data[i].respPersons.push(new ResponsiblePerson('Daniel Yinanc', 'Daniel_Yinanc@wsib.on.ca'));
+        //     this.data[i].respPersons.push(new ResponsiblePerson('Ming Zhu', 'ming_zhu@wsib.on.ca'));
         }
     }
-    upate(){
+    upate() {
         this._mbDatabase.dataChange.next(this._mbDatabase.data);
+    }
+    getResponsiblePerson(mobData: MobData) {
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http
+            .get(environment.responsiblePersonService.url
+                + '?' + environment.responsiblePersonService.appParam + '=' + mobData.application
+                + '&' + environment.responsiblePersonService.envParam + '=' + mobData.environment)
+            .toPromise()
+            .then((response) => {
+                // set returned resposible person in here
+                mobData.respPersons = [];
+            })
+            .catch(this.handleError);
+    }
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
     }
 }
