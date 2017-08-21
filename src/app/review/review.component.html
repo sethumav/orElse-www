@@ -22,11 +22,18 @@
     <ng-container cdkColumnDef="respPerson">
       <md-header-cell *cdkHeaderCellDef> Responsible Person </md-header-cell>
       <md-cell *cdkCellDef="let row">
-        <div *ngFor="let respPerson of row.respPersons">
-            <div>
+        <div class="respPersonCol" *ngFor="let respPerson of row.respPersons">
+            <div class="email">
                 {{respPerson.name}}&#160;&lt;{{respPerson.email}}&gt;
             </div>
-            <div> 
+            <div class="emailSendStatus"> 
+              <md-progress-spinner *ngIf="sendingEmails && !respPerson.sent"
+                  class="emailSending"
+                  [color]="color"
+                  [mode]="mode"
+                  [value]="value">
+              </md-progress-spinner>
+              <i *ngIf="respPerson.sent" class="material-icons">done</i>
             </div>
         </div>
       </md-cell>

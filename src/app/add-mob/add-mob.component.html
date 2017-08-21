@@ -105,4 +105,10 @@
 </div>
 <div class="buttonContainer">
   <button class="primary right" (click)="submit()" md-raised-button>Submit</button>
+  <md-progress-spinner *ngIf="loading"
+        class="buttonSideSpinner"
+        [color]="color"
+        [mode]="mode"
+        [value]="value">
+    </md-progress-spinner>
 </div>

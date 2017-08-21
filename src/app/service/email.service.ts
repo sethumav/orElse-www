@@ -32,6 +32,10 @@ export class EmailService {
             .toPromise()
             .then((response) => {
                 console.log(response);
+                // assume always success for now
+                for(const rp in emailNameAddresses){
+                    emailNameAddresses[rp].sent = true;
+                }
                 return response.json().data as boolean[];
             })
             .catch(this.handleError);

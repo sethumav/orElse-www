@@ -16,7 +16,7 @@ import { MobListService } from './service/mob-list.service';
 import { EmailService } from './service/email.service';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule} from '@angular/material';
+import {MaterialModule, MdButtonModule, MdCheckboxModule, MdProgressSpinnerModule} from '@angular/material';
 import {CalendarModule} from 'primeng/primeng';
 import 'hammerjs';
 
@@ -33,7 +33,9 @@ import 'hammerjs';
     HttpModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    CalendarModule
+    CalendarModule,
+    MaterialModule,
+    MdProgressSpinnerModule
   ],
   providers: [MobListService, EmailService],
   bootstrap: [AppComponent]
