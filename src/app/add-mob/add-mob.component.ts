@@ -13,10 +13,11 @@ export class AddMobComponent{
   color = 'primary';
   mode = 'indeterminate';
   value = 50;
-  private loading = false;
+  public loading = false;
   private mobListService: MobListService;
-  private mobData: MobData;
-  private dataSource: DataSource<MobData>;
+  public mobData: MobData;
+
+  public dataSource: DataSource<MobData>;
   displayedColumns = ['section', 'task', 'environment', 'application',
   'startTime', 'endTime', 'resourceGroup', 'anything', 'anything1', 'anything2'];
 

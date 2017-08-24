@@ -18,7 +18,7 @@ export class ReviewComponent implements AfterViewChecked {
     private tableUpdated = false;
     private mobListService: MobListService;
     private emailService: EmailService;
-    private dataSource: DataSource<MobData>;
+    public dataSource: DataSource<MobData>;
     displayedColumns = ['section', 'task', 'application', 'respPerson'];
 
     constructor(mobListService: MobListService, emailService: EmailService) {
