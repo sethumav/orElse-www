@@ -28,17 +28,18 @@ export class EmailService {
     private emailSubjectTemplate;
     private from: ResponsiblePerson;
     private http: Http;
-    // create a replay subject to be use to cache template pull observable param 1 mean always replay the last value
+    // create a replay subject which always return the previous one result
     private loadEmailTemplateSubject = new ReplaySubject(1);
     constructor(http: Http) {
         this.from = new ResponsiblePerson('Brain Trust', 'braintrust@wsib.on.ca');
         this.http = http;
+        // call loadEmailTemplate to get obserable for fetching email templates, then subscribt it using the replay subject
+        this.loadEmailTemplate().subscribe(this.loadEmailTemplateSubject);
     }
     sendEmails(mob: MobData): Promise<boolean[]> {
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        // get the observerable for template pull and make replay subject subscribe to it
-        this.loadEmailTemplate().subscribe(this.loadEmailTemplateSubject);
-        // subscribe to the replay observable to it will be cache after the first call
+        // get replay subjet as observable as it is a replaysubject with 1 previous result this will gurrantee that not matter how many time 
+        // sendEmails called the template only gets fetched once as the replaysubject will always return the previous result
         return this.loadEmailTemplateSubject.asObservable().map(results => results)
                 .mergeMap(templates => {
                     console.log(templates[0].text());
