@@ -1,0 +1,10 @@
+<div>Greetings,</div>
+<p>
+    {{application}} in {{environment}} will need to be validated and shutdown/restarted (if required) between {{startTime}}-{{endTime}}.
+</p>
+<p>
+    Bridge information: {{anything1}}
+</p>
+<p>
+    Please respond to this email in 48 hours to confirm your attendance.
+</p>
