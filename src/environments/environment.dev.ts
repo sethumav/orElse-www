@@ -5,9 +5,9 @@
 
 export const environment = {
   production: false,
-  emailService: 'http://localhost',
+  emailService: 'https://braintrustwsib.ddns.net/api/emails-microservice/v1/email/send',
   responsiblePersonService: {
-    url: 'http://localhost:8080/getResponsiblePersonByApplicationAndEnvironment',
+    url: 'https://braintrustwsib.ddns.net/api/responsibleperson-microservice/getResponsiblePersonByApplicationAndEnvironment',
     appParam: 'application',
     envParam: 'environment'
   }
