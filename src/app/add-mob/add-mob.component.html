@@ -17,6 +17,9 @@
   <md-input-container>
     <input [(ngModel)]="mobData.resourceGroup" mdInput placeholder="Resource Group" />
   </md-input-container>
+  <md-input-container>
+    <input [(ngModel)]="mobData.bridgeInfo" mdInput placeholder="Bridge" />
+  </md-input-container>
 </div>
 <div class="timeGroup">
   <label class="timeLabel">Change time:</label>
@@ -117,13 +120,18 @@
       <md-header-cell *cdkHeaderCellDef> Anything 2 </md-header-cell>
       <md-cell *cdkCellDef="let row"> {{row.anything2}} </md-cell>
     </ng-container>
+    <!-- End time Column -->
+    <ng-container cdkColumnDef="bridgeInfo">
+      <md-header-cell *cdkHeaderCellDef> Bridge </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.bridgeInfo}} </md-cell>
+    </ng-container>
 
     <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
     <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table>
 </div>
 <div class="buttonContainer">
-  <button class="primary right" (click)="submit()" md-raised-button>Submit</button>
+  <button id="submiMopBtn" class="primary right" (click)="submit()" md-raised-button>Submit</button>
   <md-progress-spinner *ngIf="loading"
         class="buttonSideSpinner"
         [color]="color"

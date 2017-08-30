@@ -34,6 +34,7 @@ export class MobData {
     respPersons: ResponsiblePerson[];
     preValidation: Date;
     postValidation: Date;
+    bridgeInfo: string;
 
 }
 class MobDatabase {
