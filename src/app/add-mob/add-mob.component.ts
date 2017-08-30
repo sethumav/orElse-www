@@ -19,7 +19,7 @@ export class AddMobComponent{
 
   public dataSource: DataSource<MobData>;
   displayedColumns = ['section', 'task', 'environment', 'application',
-  'startTime', 'endTime', 'resourceGroup', 'anything', 'anything1', 'anything2'];
+  'startTime', 'endTime', 'preValidation', 'postValidation', 'resourceGroup', 'anything', 'anything1', 'anything2'];
 
   constructor(
     private router: Router,
