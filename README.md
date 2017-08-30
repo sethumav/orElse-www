@@ -15,7 +15,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
 In order to build nginx docker image used two commands one after another:
-`ng build --prod --aot`
+`ng build --prod --environment=dev --aot`
 `docker build . -t quay.io/wsib/orelse-www`
 
 ## Running unit tests
