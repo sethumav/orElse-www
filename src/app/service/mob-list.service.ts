@@ -32,6 +32,9 @@ export class MobData {
     anything1: string;
     anything2: string;
     respPersons: ResponsiblePerson[];
+    preValidation: Date;
+    postValidation: Date;
+    bridgeInfo: string;
 
 }
 class MobDatabase {

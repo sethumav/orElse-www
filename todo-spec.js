@@ -1,6 +1,6 @@
 describe('orelse front end up and running', function() {
   var inputExists = element(by.xpath('//*[@id="md-input-1"]')); 
-  var submitExists = element(by.xpath('/html/body/app-root/div/ng-component/div[5]/div/div[2]/button/span'));
+  var submitExists = element(by.xpath('//*[@id="submiMopBtn"]'));
   
   it('should be up and running', function() {
     browser.get('http://localhost:4200');
