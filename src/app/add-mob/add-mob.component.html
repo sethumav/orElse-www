@@ -33,6 +33,11 @@
   <span class="toText">to</span>
   <p-calendar [(ngModel)]="mobData.postValidation" readonlyInput="true" placeholder="Pos-Validation" showTime="showTime" hourFormat="24"></p-calendar>
 </div>
+<div class="timeGroup">
+  <label class="timeLabel">Shutdown/Restart time: </label>
+  <input type="checkbox" [(ngModel)]="mobData.isShutdownRestart" />
+  <p-calendar *ngIf="mobData.isShutdownRestart" [(ngModel)]="mobData.shutDownRestartTime" readonlyInput="true" placeholder="Shutdown/Restart time" showTime="showTime" hourFormat="24"></p-calendar>
+</div>
 <div>
   <md-input-container>
     <input [(ngModel)]="mobData.anything" mdInput placeholder="Anything" />
