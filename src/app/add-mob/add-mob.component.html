@@ -33,10 +33,10 @@
   <span class="toText">to</span>
   <p-calendar [(ngModel)]="mobData.postValidation" readonlyInput="true" placeholder="Pos-Validation" showTime="showTime" hourFormat="24"></p-calendar>
 </div>
-<div class="timeGroup">
+<div class="timeGroup" style="height: 29px;">
   <label class="timeLabel">Shutdown/Restart time: </label>
-  <input type="checkbox" [(ngModel)]="mobData.isShutdownRestart" />
-  <p-calendar *ngIf="mobData.isShutdownRestart" [(ngModel)]="mobData.shutDownRestartTime" readonlyInput="true" placeholder="Shutdown/Restart time" showTime="showTime" hourFormat="24"></p-calendar>
+  <input type="checkbox" [(ngModel)]="mobData.hasShutdownRestart" />
+  <p-calendar *ngIf="mobData.hasShutdownRestart" [(ngModel)]="mobData.shutDownRestartTime" readonlyInput="true" placeholder="Shutdown/Restart time" showTime="showTime" hourFormat="24"></p-calendar>
 </div>
 <div>
   <md-input-container>
@@ -106,6 +106,11 @@
     <ng-container cdkColumnDef="resourceGroup">
       <md-header-cell *cdkHeaderCellDef> Resource Group </md-header-cell>
       <md-cell *cdkCellDef="let row"> {{row.resourceGroup}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="shutDownRestart">
+      <md-header-cell *cdkHeaderCellDef> Shutdown/Restart </md-header-cell>
+      <md-cell *cdkCellDef="let row"> <span *ngIf="row.hasShutdownRestart">{{row.shutDownRestartTime | date:'short'}}</span> </md-cell>
     </ng-container>
 
     <!-- End time Column -->
