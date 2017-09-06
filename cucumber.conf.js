@@ -11,14 +11,15 @@ exports.config = {
 
   // Spec patterns are relative to this directory.
   specs: [
-    'features/*.feature'
+    'features/searchResponsiblePerson.feature'
   ],
 
-  baseURL: 'http://localhost:8080/',
+  baseURL: 'http://localhost:4200/',
 
   cucumberOpts: {
     strict: true,
-    require: 'features/step_definitions/*.js',
+    timeout: 10000,
+    require: ['features/env.js', 'features/step_definitions/mopStepDefinitions.js'],
     tags: false,
     profile: false,
     'no-source': true
