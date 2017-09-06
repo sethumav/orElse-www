@@ -3,13 +3,20 @@ Feature: Send reminder emails when Mop is received
 production support when a new MOP is
     received.
 
-Scenario: Checking MOP sent emails
-  Given Vendor uploaded a MOP
+Scenario: Search for a responsible person using application and enverionment
+  Given OrElse website is up and running
   When I visit application website
-  And I enter changeRequestId
-  Then I should see a list of sent reminder email addresses
+  And I enter application name as tcm and environment as prod
+  Then I should see a list of responsible person containing Daniel Yinanc
 
-Scenario: Vendor uploads a MOP
-  Given Application website is up and running
-  When Vendor uploads a Mop via frontEnd
-  Then Application sends reminder emails to correct parties
+Scenario: Search but not find a responsible person using application and environment
+  Given OrElse website is up and running
+  When I visit application website
+  And I enter an application name that does not exist such as disneyland and environment as prod
+  Then I should see an empty list of responsible person
+
+Scenario: Search but not find a responsible person using application and environment
+  Given OrElse website is up and running
+  When I visit application website
+  And I enter an application name that does not exist such as disneyland and environment as prod
+  Then I should see an empty list of responsible person
