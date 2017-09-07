@@ -1,7 +1,24 @@
 var browserstack = require('browserstack-local');
 
 exports.config = {
-  'specs': ['todo-spec.js'],
+  getPageTimeout: 60000,
+  allScriptsTimeout: 500000,
+  framework: 'custom',
+  // path relative to the current config file
+  frameworkPath: require.resolve('protractor-cucumber-framework'),
+  // Spec patterns are relative to this directory.
+  specs: [
+    'features/searchResponsiblePerson.feature'
+  ],
+   cucumberOpts: {
+      strict: true,
+      timeout: 10000,
+      require: ['features/env.js', 'features/step_definitions/mopStepDefinitions.js'],
+      tags: false,
+      profile: false,
+      'no-source': true
+    },
+
   'seleniumAddress': 'http://hub-cloud.browserstack.com/wd/hub',
 
   'capabilities': {
