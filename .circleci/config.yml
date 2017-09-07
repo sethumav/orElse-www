@@ -32,6 +32,12 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run: 
+          name: Running unit tests
+          command: ./node_modules/@angular/cli/bin/ng test --code-coverage --single-run
+      - run: 
+          name: Send codecov reports
+          command: npm run codecov
 
       - run: 
           name: Running App Server

@@ -30,7 +30,7 @@ describe('when sendemail', () => {
         })
         .compileComponents();
     }));
-    it('method are called', async(inject(
+    it('Services are injected correctly', async(inject(
         [EmailService, MockBackend], (service, mockBackend) => {
         expect(service).toBeDefined();
         expect(service.http).toBeDefined();
@@ -38,6 +38,18 @@ describe('when sendemail', () => {
         // spyOn(service.http, 'get').and.returnValue(Observable.create(function (obs) { obs.next(1); }));
         // service.sendEmails(new MobData());
         // expect(service.http.get).toHaveBeenCalled();
-      })));
+    })));
+
+    it('Responose is fetched correctly', async(inject(
+        [EmailService, MockBackend], (service, mockBackend) => {
+        const fakeEmailSendStatusData = [true, false, true];
+        const options = new ResponseOptions({status: 200, body: {data: fakeEmailSendStatusData}});
+        const response = new Response(options);
+        mockBackend.connections.subscribe((c: MockConnection) => c.mockRespond(response));
+        service.sendEmails(new MobData()).then(status => {
+                expect(status.length).toBe(fakeEmailSendStatusData.length,
+                  'should have expected no. of status');
+              });
+    })));
 });
 
