@@ -1,4 +1,7 @@
 # MyApp
+[![CircleCI](https://circleci.com/gh/wsibcloud/orelse-www.svg?style=svg&circle-token=9a441a575c0c5598c129fb12ae7e9a9d9342a72a)](https://circleci.com/gh/wsibcloud/orelse-www)
+[![codecov](https://codecov.io/gh/wsibcloud/orelse-www/branch/master/graph/badge.svg?token=XGuLTtzdd7)](https://codecov.io/gh/wsibcloud/orelse-www)
+[![Docker Repository on Quay](https://quay.io/repository/wsib/orelse-www/status?token=1651f113-5e1b-4799-aaa7-c4d9f7fac1d0 "Docker Repository on Quay")](https://quay.io/repository/wsib/orelse-www)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
 
