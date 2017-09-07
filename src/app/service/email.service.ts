@@ -27,7 +27,7 @@ export class EmailService {
     private emailBodyTemplate;
     private emailSubjectTemplate;
     private from: ResponsiblePerson;
-    private http: Http;
+    public http: Http;
     // create a replay subject which always return the previous one result
     private loadEmailTemplateSubject = new ReplaySubject(1);
     constructor(http: Http) {
