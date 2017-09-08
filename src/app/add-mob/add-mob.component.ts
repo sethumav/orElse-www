@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MobListService, MobData} from '../service/mob-list.service';
+import { MobListService, MobData } from '../service/mob-list.service';
 import { DataSource } from '@angular/cdk';
 import { DatePipe } from '@angular/common';
-import {MaterialModule, MdProgressSpinnerModule} from '@angular/material';
+import { MaterialModule, MdProgressSpinnerModule } from '@angular/material';
+import { MdDialog, MdDialogConfig } from '@angular/material';
+import { AddMobDialogComponent } from './dialog/add-mob.dialog';
 @Component({
   templateUrl: './add-mob.component.html',
   styleUrls: ['./add-mob.component.css']
 })
-export class AddMobComponent{
+export class AddMobComponent {
 
   color = 'primary';
   mode = 'indeterminate';
@@ -19,10 +21,17 @@ export class AddMobComponent{
 
   public dataSource: DataSource<MobData>;
   displayedColumns = ['section', 'task', 'environment', 'application',
-  'startTime', 'endTime', 'preValidation', 'postValidation', 'resourceGroup', 'shutDownRestart',
-  'anything', 'anything1', 'anything2', 'bridgeInfo'];
+    'startTime', 'endTime', 'preValidation', 'postValidation', 'resourceGroup', 'shutDownRestart',
+    'anything', 'anything1', 'anything2', 'bridgeInfo'];
 
+  dialogConfig: MdDialogConfig = {
+    disableClose: false,
+    role: 'dialog',
+    height: '700px',
+    width: '800px',
+  };
   constructor(
+    public dialog: MdDialog,
     private router: Router,
     mobListService: MobListService
   ) {
@@ -31,19 +40,17 @@ export class AddMobComponent{
     this.mobData = new MobData();
   }
 
-  addRow() {
-    this.mobListService.addMobData(this.mobData);
-    // clear form after added
-    this.mobData = new MobData();
+  showNewMobDialog(mobData: MobData) {
+    const dateSelectDialog = this.dialog.open(AddMobDialogComponent, this.dialogConfig);
   }
 
   submit() {
     this.loading = true;
     this.mobListService.getRespPerson()
-        .subscribe(results => {
-          this.loading = false;
-          this.mobListService.updateRespPerson(results);
-          this.router.navigate(['/review']);
-        });
+      .subscribe(results => {
+        this.loading = false;
+        this.mobListService.updateRespPerson(results);
+        this.router.navigate(['/review']);
+      });
   }
 }
