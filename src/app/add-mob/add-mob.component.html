@@ -29,7 +29,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let mobData of mobListService.mobDatas">
+    <tr (click)="showNewMobDialog(mobData)" *ngFor="let mobData of mobListService.mobDatas">
       <td>{{mobData.section}}</td>
       <td>{{mobData.task}}</td>
       <td>{{mobData.environment}}</td>

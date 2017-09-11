@@ -35,6 +35,9 @@ export class AddMobComponent {
 
   showNewMobDialog(mobData: MobData) {
     const dateSelectDialog = this.dialog.open(AddMobDialogComponent, this.dialogConfig);
+    if (mobData !== undefined) {
+      dateSelectDialog.componentInstance.mobData = mobData;
+    }
   }
 
   submit() {
