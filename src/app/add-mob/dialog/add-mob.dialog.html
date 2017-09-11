@@ -1,4 +1,4 @@
-<h1 md-dialog-title>Mob Infomation<span  *ngIf="isEdit">(Edit)</span></h1>
+<h1 md-dialog-title>Mob Infomation<span  *ngIf="isEdit">(Edit)</span><span  *ngIf="!isEdit">(New)</span></h1>
 <div id="addMobDialog">
     <md-input-container>
       <input [(ngModel)]="mobData.section" mdInput placeholder="Section" />
