@@ -1,6 +1,7 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 body{
   padding-top: 104px;
+  margin: 0px;
 }
 .content {
   padding: 20px 30px 20px 30px;

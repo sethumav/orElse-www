@@ -1,4 +1,4 @@
-<h1 md-dialog-title>Mob Infomation</h1>
+<h1 md-dialog-title>Mob Infomation<span  *ngIf="isEdit">(Edit)</span></h1>
 <div id="addMobDialog">
     <md-input-container>
       <input [(ngModel)]="mobData.section" mdInput placeholder="Section" />
@@ -45,5 +45,5 @@
   </div>
   <div class="buttonContainerDialog buttonContainer">
     <button md-dialog-close md-raised-button>Close</button>
-    <button class="primary right" md-raised-button (click)="addRow()">Add</button>
+    <button class="primary right" md-raised-button (click)="addRow()" *ngIf="!isEdit">Add</button>
   <div>

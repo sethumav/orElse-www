@@ -11,7 +11,7 @@ table.mobList th{
 }
 table.mobList td{
     color: black;
-    padding: 5px 0px 5px 0px;
+    padding: 10px 0px 10px 0px;
     border-bottom: 1px solid gray;
 }
 table.mobList tr:hover td{

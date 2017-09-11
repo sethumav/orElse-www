@@ -9,7 +9,8 @@ import { MdDialog, MdDialogConfig } from '@angular/material';
     styleUrls: ['./add-mob.dialog.css']
 })
 export class AddMobDialogComponent {
-    public mobData: MobData;
+    private mobData: MobData;
+    private isEdit = false;
     constructor(
         public dialogRef: MdDialogRef<AddMobDialogComponent>,
         private mobListService: MobListService
@@ -21,5 +22,9 @@ export class AddMobDialogComponent {
         this.mobListService.addMobData(this.mobData);
         // clear form after added
         this.mobData = new MobData();
+    }
+    editMobData(mobData: MobData){
+        this.mobData = mobData;
+        this.isEdit = true;
     }
 }
