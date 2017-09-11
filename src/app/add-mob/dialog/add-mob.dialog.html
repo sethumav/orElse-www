@@ -1,4 +1,4 @@
-<h1>Mob Infomation</h1>
+<h1 md-dialog-title>Mob Infomation</h1>
 <div id="addMobDialog">
     <md-input-container>
       <input [(ngModel)]="mobData.section" mdInput placeholder="Section" />
@@ -43,6 +43,7 @@
         <textarea cols="70" rows="10" [(ngModel)]="mobData.anything" mdInput placeholder="Comment" ></textarea>
     </md-input-container>
   </div>
-  <div class="buttonContainerDialog">
-    <button class="primary" md-raised-button (click)="addRow()">Add</button>
+  <div class="buttonContainerDialog buttonContainer">
+    <button md-dialog-close md-raised-button>Close</button>
+    <button class="primary right" md-raised-button (click)="addRow()">Add</button>
   <div>

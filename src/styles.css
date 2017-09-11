@@ -42,7 +42,6 @@ button.primary{
     color: white;
 }
 div.buttonContainer button.right{
-  margin-top: 15px;
   float: right;
 }
 div.buttonContainer .buttonSideSpinner{
