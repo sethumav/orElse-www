@@ -1,3 +1,7 @@
+p.noMopMessage{
+    font-size: 20px;
+    text-align: center;
+}
 table.mobList{
     width: 100%;
     border-collapse: collapse; 

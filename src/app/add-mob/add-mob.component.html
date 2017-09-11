@@ -8,9 +8,9 @@
     </md-progress-spinner>
   </div>
   
-<p *ngIf="mobListService.mobDatas.length === 0">
-    There is no mob yet, please add mob by click on add button.
-  </p>
+<p class="noMopMessage" *ngIf="mobListService.mobDatas.length === 0">
+    There is no MOP yet, please add one by click on the Add button.
+</p>
 <table class="mobList" *ngIf="mobListService.mobDatas.length > 0">
   <thead>
     <tr>
