@@ -24,13 +24,11 @@ export class MobData {
     section: string;
     task: string;
     application: string;
-    startTime: string;
-    endTime: string;
+    startTime: Date;
+    endTime: Date;
     environment: string;
     resourceGroup: string;
-    anything: string;
-    anything1: string;
-    anything2: string;
+    comment: string;
     respPersons: ResponsiblePerson[];
     preValidation: Date;
     postValidation: Date;
@@ -39,68 +37,23 @@ export class MobData {
     shutDownRestartTime: Date;
 
 }
-class MobDatabase {
-    /** Stream that emits whenever the data has been modified. */
-    dataChange: BehaviorSubject<MobData[]> = new BehaviorSubject<MobData[]>([]);
-    get data(): MobData[] { return this.dataChange.value; }
-
-    constructor() {
-        // Fill up the database with 100 users.
-        // for (let i = 0; i < 100; i++) { this.addMockMobData(); }
-    }
-    addMobData(mobData: MobData) {
-        const copiedData = this.data.slice();
-        copiedData.push(mobData);
-        // console.log(copiedData);
-        this.dataChange.next(copiedData);
-    }
-}
-
-/**
- * Data source to provide what data should be rendered in the table. Note that the data source
- * can retrieve its data in any way. In this case, the data source is provided a reference
- * to a common data base, ExampleDatabase. It is not the data source's responsibility to manage
- * the underlying data. Instead, it only needs to take the data and send the table exactly what
- * should be rendered.
- */
-
-class MobDataSource extends DataSource<any> {
-    constructor(private _exampleDatabase: MobDatabase) {
-        super();
-    }
-
-    /** Connect function called by the table to retrieve one stream containing the data to render. */
-    connect(): Observable<MobData[]> {
-        return this._exampleDatabase.dataChange;
-    }
-
-    disconnect() { }
-}
 
 
 @Injectable()
 export class MobListService {
-    private _mbDatabase;
-    private _mbDataSource;
-    private http: Http;
-    constructor(http: Http) {
-        this._mbDatabase = new MobDatabase();
-        this._mbDataSource = new MobDataSource(this._mbDatabase);
-        this.http = http;
-    }
-    get mbDataSource(){
-        return this._mbDataSource;
+    private _mobDatas: MobData[] = [];
+    constructor(private http: Http) {
     }
     addMobData(mobData: MobData) {
-        this._mbDatabase.addMobData(mobData);
+        this._mobDatas.push(mobData);
     }
-    get data(): MobData[]{
-        return this._mbDatabase.data;
+    get mobDatas(): MobData[]{
+        return this._mobDatas;
     }
     getRespPerson() {
         const requests = [];
-        for (const key of Object.keys(this.data)){
-            requests.push(this.getResponsiblePersonRequest(this.data[key]));
+        for (const key of Object.keys(this._mobDatas)){
+            requests.push(this.getResponsiblePersonRequest(this._mobDatas[key]));
         }
         return Observable.forkJoin(requests);
     }
@@ -112,12 +65,8 @@ export class MobListService {
             for (const p in results[i]) {
                 rps.push(new ResponsiblePerson(results[i][p]['name'], results[i][p]['email']));
             }
-            this.data[i].respPersons = rps;
+            this._mobDatas[i].respPersons = rps;
         }
-    }
-
-    upate() {
-        this._mbDatabase.dataChange.next(this._mbDatabase.data);
     }
     getResponsiblePersonRequest(mobData: MobData) {
         const headers = new Headers({ 'Content-Type': 'application/json' });

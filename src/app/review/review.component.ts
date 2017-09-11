@@ -23,7 +23,7 @@ export class ReviewComponent implements AfterViewChecked {
 
     constructor(mobListService: MobListService, emailService: EmailService) {
         this.mobListService = mobListService;
-        this.dataSource = this.mobListService.mbDataSource;
+        // this.dataSource = this.mobListService.mbDataSource;
         this.emailService =emailService;
         console.log(this.dataSource);
     }
@@ -35,15 +35,15 @@ export class ReviewComponent implements AfterViewChecked {
     update() {
         if (this.tableUpdated === false) {
             this.tableUpdated = true;
-            this.mobListService.upate();
+            // this.mobListService.upate();
         }
     }
     sendEmails() {
         this.sendingEmails = true;
         let mobData: MobData;
-        for( let i in this.mobListService.data){ 
-            mobData = this.mobListService.data[i];
-            this.emailService.sendEmails( mobData);
-        }
+        // for( let i in this.mobListService.data){ 
+        //     mobData = this.mobListService.data[i];
+        //     this.emailService.sendEmails( mobData);
+        // }
     }
 }

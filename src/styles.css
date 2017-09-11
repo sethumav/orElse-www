@@ -1,4 +1,7 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+body{
+  padding-top: 104px;
+}
 .content {
   padding: 20px 30px 20px 30px;
 }
@@ -48,4 +51,7 @@ div.buttonContainer .buttonSideSpinner{
   margin-top: 15px;
   float: right;
   height: 40px;
+}
+p{
+  color: black;
 }

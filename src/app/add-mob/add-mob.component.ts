@@ -18,12 +18,6 @@ export class AddMobComponent {
   public loading = false;
   private mobListService: MobListService;
   public mobData: MobData;
-
-  public dataSource: DataSource<MobData>;
-  displayedColumns = ['section', 'task', 'environment', 'application',
-    'startTime', 'endTime', 'preValidation', 'postValidation', 'resourceGroup', 'shutDownRestart',
-    'anything', 'anything1', 'anything2', 'bridgeInfo'];
-
   dialogConfig: MdDialogConfig = {
     disableClose: false,
     role: 'dialog',
@@ -36,7 +30,6 @@ export class AddMobComponent {
     mobListService: MobListService
   ) {
     this.mobListService = mobListService;
-    this.dataSource = mobListService.mbDataSource;
     this.mobData = new MobData();
   }
 
