@@ -48,5 +48,6 @@ export class AddMobComponent {
         this.mobListService.updateRespPerson(results);
         this.router.navigate(['/review']);
       });
+    // this.router.navigate(['/review']);
   }
 }

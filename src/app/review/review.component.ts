@@ -41,9 +41,9 @@ export class ReviewComponent implements AfterViewChecked {
     sendEmails() {
         this.sendingEmails = true;
         let mobData: MobData;
-        // for( let i in this.mobListService.data){ 
-        //     mobData = this.mobListService.data[i];
-        //     this.emailService.sendEmails( mobData);
-        // }
+        for( let i in this.mobListService.mobDatas){ 
+            mobData = this.mobListService.mobDatas[i];
+            this.emailService.sendEmails( mobData);
+        }
     }
 }
