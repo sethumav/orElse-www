@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "protractor": "protractor",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",

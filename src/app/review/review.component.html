@@ -1,10 +1,10 @@
 <div class="buttonContainer">
-  <button class="primary right" (click)="sendEmails()" md-raised-button>Send Emails</button>
+  <button id="btnSendEmails" class="primary right" (click)="sendEmails()" md-raised-button>Send Emails</button>
 </div>
 <p>
   Please review MOP data below and clicd Send Email button to send emails.
 </p>
-<table class="mobList" *ngIf="mobListService.mobDatas.length > 0">
+<table class="mopDataList" *ngIf="mobListService.mobDatas.length > 0">
   <thead>
     <tr>
       <th>section</th>
