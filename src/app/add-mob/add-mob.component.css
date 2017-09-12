@@ -1,11 +1,4 @@
-label.timeLabel{
-    float: left;
-    width: 170px;
-}
-span.toText{
-    padding: 10px;
-}
-div.timeGroup{
-    padding-top: 10px;
-    padding-bottom: 10px;
+p{
+    font-size: 20px;
+    text-align: center;
 }

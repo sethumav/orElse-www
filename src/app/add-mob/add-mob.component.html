@@ -1,151 +1,50 @@
-<h1>Add new mob</h1>
-<div>
-  <md-input-container>
-    <input [(ngModel)]="mobData.section" mdInput placeholder="Section" />
-  </md-input-container>
-  <md-input-container>
-    <input [(ngModel)]="mobData.task" mdInput placeholder="Task" />
-  </md-input-container>
-  <md-input-container>
-    <input [(ngModel)]="mobData.environment" mdInput placeholder="Environment" />
-  </md-input-container>
-</div>
-<div>
-  <md-input-container>
-    <input [(ngModel)]="mobData.application" mdInput placeholder="Application" />
-  </md-input-container>
-  <md-input-container>
-    <input [(ngModel)]="mobData.resourceGroup" mdInput placeholder="Resource Group" />
-  </md-input-container>
-  <md-input-container>
-    <input [(ngModel)]="mobData.bridgeInfo" mdInput placeholder="Bridge" />
-  </md-input-container>
-</div>
-<div class="timeGroup">
-  <label class="timeLabel">Change time:</label>
-  <p-calendar [(ngModel)]="mobData.startTime" readonlyInput="true" placeholder="Start Time" showTime="showTime" hourFormat="24"></p-calendar>
-  <span class="toText">to</span>
-  <p-calendar [(ngModel)]="mobData.endTime" readonlyInput="true" placeholder="End Time" showTime="showTime" hourFormat="24"></p-calendar>
-</div>
-<div class="timeGroup">
-  <label class="timeLabel">Validation time:</label>
-  <p-calendar [(ngModel)]="mobData.preValidation" readonlyInput="true" placeholder="Pre-Validation" showTime="showTime" hourFormat="24"></p-calendar>
-  <span class="toText">to</span>
-  <p-calendar [(ngModel)]="mobData.postValidation" readonlyInput="true" placeholder="Pos-Validation" showTime="showTime" hourFormat="24"></p-calendar>
-</div>
-<div class="timeGroup" style="height: 29px;">
-  <label class="timeLabel">Shutdown/Restart time: </label>
-  <input type="checkbox" [(ngModel)]="mobData.hasShutdownRestart" />
-  <p-calendar *ngIf="mobData.hasShutdownRestart" [(ngModel)]="mobData.shutDownRestartTime" readonlyInput="true" placeholder="Shutdown/Restart time" showTime="showTime" hourFormat="24"></p-calendar>
-</div>
-<div>
-  <md-input-container>
-    <input [(ngModel)]="mobData.anything" mdInput placeholder="Anything" />
-  </md-input-container>
-  <md-input-container>
-    <input [(ngModel)]="mobData.anything1" mdInput placeholder="Anything1" />
-  </md-input-container>
-  <md-input-container>
-    <input [(ngModel)]="mobData.anything2" mdInput placeholder="Anything2" />
-  </md-input-container>
-</div>
+
+
+
 <div class="buttonContainer">
-  <button class="primary" md-raised-button (click)="addRow()">Add</button>
-<div>
-<div class="mobDataTableContainer mat-elevation-z8">
-  <md-table #table [dataSource]="dataSource">
+    <button id="btnOpenAddMopDialog" class="primary" (click)="showNewMobDialog()" md-raised-button>Add</button>
 
-    <!-- Task Column -->
-    <ng-container cdkColumnDef="section">
-      <md-header-cell *cdkHeaderCellDef> Section </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.section}} </md-cell>
-    </ng-container>
-
-    <!-- Task Column -->
-    <ng-container cdkColumnDef="task">
-      <md-header-cell *cdkHeaderCellDef> Task </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.task}} </md-cell>
-    </ng-container>
-
-    <!-- Task Column -->
-    <ng-container cdkColumnDef="environment">
-      <md-header-cell *cdkHeaderCellDef> Environment </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.environment}} </md-cell>
-    </ng-container>
-
-    <!-- Application Column -->
-    <ng-container cdkColumnDef="application">
-      <md-header-cell *cdkHeaderCellDef> Application </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.application}} </md-cell>
-    </ng-container>
-
-    <!-- Start time Column -->
-    <ng-container cdkColumnDef="startTime">
-      <md-header-cell *cdkHeaderCellDef> Start Time </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{ row.startTime | date:'short' }} </md-cell>
-    </ng-container>
-
-    <!-- End time Column -->
-    <ng-container cdkColumnDef="endTime">
-      <md-header-cell *cdkHeaderCellDef> End Time </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{ row.endTime | date:'short' }} </md-cell>
-    </ng-container>
-    <!-- Pre validation time Column -->
-    <ng-container cdkColumnDef="preValidation">
-      <md-header-cell *cdkHeaderCellDef> Pre-Validation Time </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{ row.preValidation | date:'short' }} </md-cell>
-    </ng-container>
-
-    <!-- Post validation time Column -->
-    <ng-container cdkColumnDef="postValidation">
-      <md-header-cell *cdkHeaderCellDef> Post-Validation Time </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{ row.postValidation | date:'short' }} </md-cell>
-    </ng-container>
-
-    <!-- Resource Group Column -->
-    <ng-container cdkColumnDef="resourceGroup">
-      <md-header-cell *cdkHeaderCellDef> Resource Group </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.resourceGroup}} </md-cell>
-    </ng-container>
-
-    <ng-container cdkColumnDef="shutDownRestart">
-      <md-header-cell *cdkHeaderCellDef> Shutdown/Restart </md-header-cell>
-      <md-cell *cdkCellDef="let row"> <span *ngIf="row.hasShutdownRestart">{{row.shutDownRestartTime | date:'short'}}</span> </md-cell>
-    </ng-container>
-
-    <!-- End time Column -->
-    <ng-container cdkColumnDef="anything">
-      <md-header-cell *cdkHeaderCellDef> Anything </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.anything}} </md-cell>
-    </ng-container>
-
-    <!-- End time Column -->
-    <ng-container cdkColumnDef="anything1">
-      <md-header-cell *cdkHeaderCellDef> Anything 1 </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.anything1}} </md-cell>
-    </ng-container>
-
-    <!-- End time Column -->
-    <ng-container cdkColumnDef="anything2">
-      <md-header-cell *cdkHeaderCellDef> Anything 2 </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.anything2}} </md-cell>
-    </ng-container>
-    <!-- End time Column -->
-    <ng-container cdkColumnDef="bridgeInfo">
-      <md-header-cell *cdkHeaderCellDef> Bridge </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.bridgeInfo}} </md-cell>
-    </ng-container>
-
-    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>
-</div>
-<div class="buttonContainer">
-  <button id="submiMopBtn" class="primary right" (click)="submit()" md-raised-button>Submit</button>
-  <md-progress-spinner *ngIf="loading"
-        class="buttonSideSpinner"
-        [color]="color"
-        [mode]="mode"
-        [value]="value">
+    <button id="btnSubmitMops" *ngIf="mobListService.mobDatas.length > 0" class="primary right" (click)="submit()" md-raised-button>Submit</button>
+    <md-progress-spinner *ngIf="loading" class="buttonSideSpinner" [color]="color" [mode]="mode" [value]="value">
     </md-progress-spinner>
-</div>
+  </div>
+
+<p class="noMopMessage" *ngIf="mobListService.mobDatas.length === 0">
+    There is no MOP yet, please add one by click on the Add button.
+</p>
+<table id="mopDataList" class="mobList" *ngIf="mobListService.mobDatas.length > 0">
+  <thead>
+    <tr>
+      <th>section</th>
+      <th>task</th>
+      <th>environment</th>
+      <th>application</th>
+      <th>start time</th>
+      <th>end time</th>
+      <th>pre-validation time</th>
+      <th>post-validation time</th>
+      <th>shutdown time</th>
+      <th>restart time</th>
+      <th>resourceGroup</th>
+      <th>bridgeInfo</th>
+      <th>comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr (click)="showNewMobDialog(mobData)" *ngFor="let mobData of mobListService.mobDatas">
+      <td>{{mobData.section}}</td>
+      <td>{{mobData.task}}</td>
+      <td>{{mobData.environment}}</td>
+      <td>{{mobData.application}}</td>
+      <td>{{mobData.startTime | date:'short'}}</td>
+      <td>{{mobData.endTime | date:'short'}}</td>
+      <td>{{mobData.preValidation | date:'short'}}</td>
+      <td>{{mobData.postValidation | date:'short'}}</td>
+      <td>{{mobData.shutDownTime | date:'short'}}</td>
+      <td>{{mobData.restartTime | date:'short'}}</td>
+      <td>{{mobData.resourceGroup}}</td>
+      <td>{{mobData.bridgeInfo}}</td>
+      <td>{{mobData.comment}}</td>
+    </tr>
+  </tbody>
+</table>

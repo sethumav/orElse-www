@@ -1,0 +1,50 @@
+<h1 md-dialog-title>Mob Infomation<span  *ngIf="isEdit">(Edit)</span><span  *ngIf="!isEdit">(New)</span></h1>
+<div id="addMobDialog">
+    <md-input-container>
+      <input [(ngModel)]="mobData.section" mdInput placeholder="Section" />
+    </md-input-container>
+    <md-input-container>
+      <input [(ngModel)]="mobData.task" mdInput placeholder="Task" />
+    </md-input-container>
+    <md-input-container>
+      <input id="inputAddMopDialogEnviroment" [(ngModel)]="mobData.environment" mdInput placeholder="Environment" />
+    </md-input-container>
+  </div>
+  <div>
+    <md-input-container>
+      <input id="inputAddMopDialogApplication" [(ngModel)]="mobData.application" mdInput placeholder="Application" />
+    </md-input-container>
+    <md-input-container>
+      <input [(ngModel)]="mobData.resourceGroup" mdInput placeholder="Resource Group" />
+    </md-input-container>
+    <md-input-container>
+      <input [(ngModel)]="mobData.bridgeInfo" mdInput placeholder="Bridge" />
+    </md-input-container>
+  </div>
+  <div class="timeGroup">
+    <label class="timeLabel">Change time:</label>
+    <p-calendar [(ngModel)]="mobData.startTime" readonlyInput="true" placeholder="Start Time" showTime="showTime" hourFormat="24"></p-calendar>
+    <span class="toText">to</span>
+    <p-calendar [(ngModel)]="mobData.endTime" readonlyInput="true" placeholder="End Time" showTime="showTime" hourFormat="24"></p-calendar>
+  </div>
+  <div class="timeGroup">
+    <label class="timeLabel">Validation time:</label>
+    <p-calendar [(ngModel)]="mobData.preValidation" readonlyInput="true" placeholder="Pre-Validation" showTime="showTime" hourFormat="24"></p-calendar>
+    <span class="toText">to</span>
+    <p-calendar [(ngModel)]="mobData.postValidation" readonlyInput="true" placeholder="Pos-Validation" showTime="showTime" hourFormat="24"></p-calendar>
+  </div>
+  <div class="timeGroup" style="height: 29px;">
+    <label class="timeLabel">Shutdown/Restart time: </label>
+    <input type="checkbox" [(ngModel)]="mobData.hasShutdownRestart" />
+    <p-calendar *ngIf="mobData.hasShutdownRestart" [(ngModel)]="mobData.shutDownTime" readonlyInput="true" placeholder="Shutdown time" showTime="showTime" hourFormat="24"></p-calendar>
+    <p-calendar *ngIf="mobData.hasShutdownRestart" [(ngModel)]="mobData.restartTime" readonlyInput="true" placeholder="Restart time" showTime="showTime" hourFormat="24"></p-calendar>
+  </div>
+  <div>
+    <md-input-container>
+        <textarea cols="70" rows="10" [(ngModel)]="mobData.comment" mdInput placeholder="Comment" ></textarea>
+    </md-input-container>
+  </div>
+  <div class="buttonContainerDialog buttonContainer">
+    <button id="btnMopDialogClose" md-dialog-close md-raised-button>Close</button>
+    <button id="btnAddEditMopDialog" class="primary right" md-raised-button (click)="addRow()" *ngIf="!isEdit">Add</button>
+  <div>

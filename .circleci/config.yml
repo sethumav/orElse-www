@@ -8,7 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10.1-browsers
-      
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -32,17 +32,21 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: 
+      - run:
           name: Running unit tests
           command: ./node_modules/@angular/cli/bin/ng test --code-coverage --single-run
-      - run: 
+      - run:
           name: Send codecov reports
           command: npm run codecov
 
-      - run: 
+      - run:
+          name: build for production
+          command: ./node_modules/@angular/cli/bin/ng build --prod --environment=dev --aot
+
+      - run:
           name: Running App Server
           command: ./node_modules/@angular/cli/bin/ng serve
-          background: true 
-      
+          background: true
+
       - run: "sleep 25"
       - run: "./node_modules/protractor/bin/protractor tunnelRemote.conf.js"
