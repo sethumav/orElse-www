@@ -15,12 +15,21 @@
     
      
           When('I enter application name as tcm and environment as prod', function () {
-            var elEnv = element(by.css('#md-input-5')).sendKeys("prod");
-            var elApp = element(by.css('#md-input-7')).sendKeys("tcm");
-            var elClickAdd = element(by.css('body > app-root > div > ng-component > div.buttonContainer > button'));
-            elClickAdd.click();
-            var elClickSubmit = element(by.xpath('//*[@id="submiMopBtn"]'));
-            elClickSubmit.click();
+            // open add/edit mop dialog
+            var btnOpenAddMobDialog = element(by.css('#btnOpenAddMopDialog'));
+            btnOpenAddMobDialog.click();
+            // fill in application and enviroment
+            var elEnv = element(by.css('#inputAddMopDialogEnviroment')).sendKeys("prod");
+            var elApp = element(by.css('#inputAddMopDialogApplication')).sendKeys("tcm");
+            // click dialog add button
+            var btnAddEditMopDialog = element(by.css('#btnAddEditMopDialog'));
+            btnAddEditMopDialog.click();
+            // clost the dialog
+            var btnMopDialogClose = element(by.css('#btnMopDialogClose'));
+            btnMopDialogClose.click();
+            // click submit button on add mob page
+            var btnSubmitMops = element(by.css('#btnSubmitMops'));
+            btnSubmitMops.click();
           });
         
     

@@ -3,7 +3,7 @@
 
 <div class="buttonContainer">
     <button id="btnOpenAddMopDialog" class="primary" (click)="showNewMobDialog()" md-raised-button>Add</button>
-    <button *ngIf="mobListService.mobDatas.length > 0" id="btnSubmitMops" class="primary right" (click)="submit()" md-raised-button>Submit</button>
+    <button id="btnSubmitMops" *ngIf="mobListService.mobDatas.length > 0" class="primary right" (click)="submit()" md-raised-button>Submit</button>
     <md-progress-spinner *ngIf="loading" class="buttonSideSpinner" [color]="color" [mode]="mode" [value]="value">
     </md-progress-spinner>
   </div>
