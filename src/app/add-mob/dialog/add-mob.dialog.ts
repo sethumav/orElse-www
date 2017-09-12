@@ -9,8 +9,9 @@ import { MdDialog, MdDialogConfig } from '@angular/material';
     styleUrls: ['./add-mob.dialog.css']
 })
 export class AddMobDialogComponent {
-    private mobData: MobData;
-    private isEdit = false;
+    mobData: MobData;
+    isEdit = false;
+
     constructor(
         public dialogRef: MdDialogRef<AddMobDialogComponent>,
         private mobListService: MobListService

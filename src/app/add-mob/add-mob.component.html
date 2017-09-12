@@ -3,11 +3,12 @@
 
 <div class="buttonContainer">
     <button id="btnOpenAddMopDialog" class="primary" (click)="showNewMobDialog()" md-raised-button>Add</button>
+
     <button id="btnSubmitMops" *ngIf="mobListService.mobDatas.length > 0" class="primary right" (click)="submit()" md-raised-button>Submit</button>
     <md-progress-spinner *ngIf="loading" class="buttonSideSpinner" [color]="color" [mode]="mode" [value]="value">
     </md-progress-spinner>
   </div>
-  
+
 <p class="noMopMessage" *ngIf="mobListService.mobDatas.length === 0">
     There is no MOP yet, please add one by click on the Add button.
 </p>

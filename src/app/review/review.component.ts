@@ -16,7 +16,7 @@ export class ReviewComponent implements AfterViewChecked {
     value = 50;
     private sendingEmails = false;
     private tableUpdated = false;
-    private mobListService: MobListService;
+    mobListService: MobListService;
     private emailService: EmailService;
     public dataSource: DataSource<MobData>;
     displayedColumns = ['section', 'task', 'application', 'respPerson'];
@@ -28,7 +28,7 @@ export class ReviewComponent implements AfterViewChecked {
         console.log(this.dataSource);
     }
     ngAfterViewChecked() {
-        // datatable won't load if the data are not change so we wait half seconds to call an update 
+        // datatable won't load if the data are not change so we wait half seconds to call an update
         // will find a better way later
         setTimeout(this.update, 100);
     }
@@ -41,7 +41,7 @@ export class ReviewComponent implements AfterViewChecked {
     sendEmails() {
         this.sendingEmails = true;
         let mobData: MobData;
-        for( let i in this.mobListService.mobDatas){ 
+        for( let i in this.mobListService.mobDatas){
             mobData = this.mobListService.mobDatas[i];
             this.emailService.sendEmails( mobData);
         }

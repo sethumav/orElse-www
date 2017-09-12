@@ -16,7 +16,7 @@ export class AddMobComponent {
   mode = 'indeterminate';
   value = 50;
   public loading = false;
-  private mobListService: MobListService;
+  mobListService: MobListService;
   public mobData: MobData;
   dialogConfig: MdDialogConfig = {
     disableClose: false,
@@ -33,7 +33,7 @@ export class AddMobComponent {
     this.mobData = new MobData();
   }
 
-  showNewMobDialog(mobData: MobData) {
+  showNewMobDialog(mobData?: MobData) {
     const dateSelectDialog = this.dialog.open(AddMobDialogComponent, this.dialogConfig);
     if (mobData !== undefined) {
       dateSelectDialog.componentInstance.editMobData(mobData);
