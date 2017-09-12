@@ -34,7 +34,8 @@ export class MobData {
     postValidation: Date;
     bridgeInfo: string;
     hasShutdownRestart = false;
-    shutDownRestartTime: Date;
+    shutDownTime: Date;
+    restartTime: Date;
 
 }
 
