@@ -27,6 +27,8 @@
             // clost the dialog
             var btnMopDialogClose = element(by.css('#btnMopDialogClose'));
             btnMopDialogClose.click();
+            // wait a little bit
+            browser.driver.sleep(2000);
             // click submit button on add mob page
             var btnSubmitMops = element(by.css('#btnSubmitMops'));
             btnSubmitMops.click();
@@ -35,7 +37,8 @@
     
     
           Then('I should see a list of responsible person containing Daniel Yinanc', function (callback) {
-            var elEmail = element(by.css('body > app-root > div > ng-component > div.mobDataTableContainer.mat-elevation-z8 > md-table > md-row > md-cell.mat-cell.cdk-column-respPerson.mat-column-respPerson > div > div.email'));         
+            // browser.driver.sleep(5000);
+            var elEmail = element(by.css('div.email'));         
             expect(elEmail.getText()).to.eventually.equal("daniel yinanc <daniel_yinanc@wsib.on.ca>").and.notify(callback);
           });
 
