@@ -24,8 +24,8 @@ exports.config = {
   'capabilities': {
     'browserstack.user': process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
     'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
-    'build': 'protractor-browserstack',
-    'name': 'local_test',
+    'build': 'OrElse',
+    'name': 'CircleCI',
     'browserName': 'chrome',
     'browserstack.local': true,
     'browserstack.debug': 'true'
