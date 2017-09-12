@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { APP_CONTENT } from './app.content';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private title = 'A better name for mop';
+  private _title = APP_CONTENT.app_title;
+  get title(): string{
+    return this._title;
+  }
 }
