@@ -38,10 +38,10 @@
         
     
     
-          Then('I should see a list of responsible person containing Daniel Yinanc', function () {
+          Then('I should see a list of responsible person containing Daniel Yinanc', function (callback) {
             browser.wait(webdriver.until.elementLocated(by.css('div.email'), 10000)).then(function(){
               var elEmail = element(by.css('div.email'));
-              expect(elEmail.getText()).to.eventually.equal("daniel yinanc <daniel_yinanc@wsib.on.ca>");
+              expect(elEmail.getText()).to.eventually.equal("daniel yinanc <daniel_yinanc@wsib.on.ca>").and.notify(callback);
             });
           });
 
