@@ -3,6 +3,7 @@
       
       var chai = require('chai');
       var chaiAsPromised = require('chai-as-promised');
+      const webdriver = require('selenium-webdriver')
       
       chai.use(chaiAsPromised);
       var expect = chai.expect;
@@ -27,8 +28,8 @@
             // clost the dialog
             var btnMopDialogClose = element(by.css('#btnMopDialogClose'));
             btnMopDialogClose.click();
-            // wait a little bit
-            browser.driver.sleep(2000);
+            // wait for the dialog to be closed
+            browser.wait(webdriver.until.stalenessOf(by.css('#addMobDialog')), 3000);
             // click submit button on add mob page
             var btnSubmitMops = element(by.css('#btnSubmitMops'));
             btnSubmitMops.click();
@@ -36,10 +37,10 @@
         
     
     
-          Then('I should see a list of responsible person containing Daniel Yinanc', function (callback) {
-            // browser.driver.sleep(5000);
-            var elEmail = element(by.css('div.email'));         
-            expect(elEmail.getText()).to.eventually.equal("daniel yinanc <daniel_yinanc@wsib.on.ca>").and.notify(callback);
+          Then('I should see a list of responsible person containing Daniel Yinanc', function () {
+            browser.wait(webdriver.until.elementLocated(by.css('div.email'), 5000));
+            var elEmail = element(by.css('div.email'));
+            expect(elEmail.getText()).to.eventually.equal("daniel yinanc <daniel_yinanc@wsib.on.ca>");//.and.notify(callback);
           });
 
 
