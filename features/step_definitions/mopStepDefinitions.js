@@ -29,7 +29,7 @@
             var btnMopDialogClose = element(by.css('#btnMopDialogClose'));
             btnMopDialogClose.click();
             // wait for the dialog to be closed
-            browser.wait(webdriver.until.stalenessOf(by.css('#addMobDialog')), 3000);
+            browser.wait(webdriver.until.stalenessOf(by.css('#addMobDialog')), 10000);
             // click submit button on add mob page
             var btnSubmitMops = element(by.css('#btnSubmitMops'));
             btnSubmitMops.click();
@@ -38,7 +38,7 @@
     
     
           Then('I should see a list of responsible person containing Daniel Yinanc', function () {
-            browser.wait(webdriver.until.elementLocated(by.css('div.email'), 5000));
+            browser.wait(webdriver.until.elementLocated(by.css('div.email'), 10000));
             var elEmail = element(by.css('div.email'));
             expect(elEmail.getText()).to.eventually.equal("daniel yinanc <daniel_yinanc@wsib.on.ca>");//.and.notify(callback);
           });
