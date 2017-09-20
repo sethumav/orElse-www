@@ -11,7 +11,6 @@ import { AddMobDialogComponent } from './dialog/add-mob.dialog';
   styleUrls: ['./add-mob.component.css']
 })
 export class AddMobComponent {
-
   color = 'primary';
   mode = 'indeterminate';
   value = 50;

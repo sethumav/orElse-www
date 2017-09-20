@@ -8,12 +8,14 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app-material.module';
 
+import { AuthComponent } from './auth/auth.component';
 import { AddMobComponent } from './add-mob/add-mob.component';
 import { ReviewComponent } from './review/review.component';
 
 import { AppComponent } from './app.component';
 import { MobListService } from './service/mob-list.service';
 import { EmailService } from './service/email.service';
+import { AuthService } from './service/auth.service';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule, MdButtonModule, MdCheckboxModule, MdProgressSpinnerModule} from '@angular/material';
@@ -26,7 +28,8 @@ import 'hammerjs';
     AppComponent,
     AddMobComponent,
     ReviewComponent,
-    AddMobDialogComponent
+    AddMobDialogComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import 'hammerjs';
   entryComponents: [
     AddMobDialogComponent
   ],
-  providers: [MobListService, EmailService],
+  providers: [MobListService, EmailService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
