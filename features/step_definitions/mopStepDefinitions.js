@@ -6,14 +6,14 @@
 
       chai.use(chaiAsPromised);
       var expect = chai.expect;
-      var site= "http://localhost:4200";
+      var site= "http://localhost:4200/addmob";
       var EC = protractor.ExpectedConditions;
 
       var email="";
 
       defineSupportCode(function({Given, When, Then}) {
         Given('OrElse website is up and running', function () {
-            browser.get("http://localhost:4200/")
+            browser.get("http://localhost:4200/addmob")
             browser.waitForAngular();
         });
 
