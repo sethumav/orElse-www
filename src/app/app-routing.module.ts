@@ -5,7 +5,7 @@ import { AddMobComponent } from './add-mob/add-mob.component';
 import { ReviewComponent } from './review/review.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/auth', pathMatch: 'full' },
+  { path: '', redirectTo: '/addmob', pathMatch: 'full' },
   { path: 'auth', component: AuthComponent },
   { path: 'addmob', component: AddMobComponent },
   { path: 'review', component: ReviewComponent }

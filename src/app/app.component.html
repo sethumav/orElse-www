@@ -1,7 +1,11 @@
 <header>
     <img src="assets/image/wsib-logo.jpg" alt="" />
 </header>
-<h1>{{title}}<span class="welcomeMessage">Welcome {{user.username}}!</span></h1>
+<h1>
+    {{title}}
+    <a [routerLink]="['auth']" *ngIf="user.username !== ''"><span class="welcomeMessage">Welcome {{user.username}}!/Logout</span></a>
+    <a [routerLink]="['auth']" *ngIf="user.username === ''"><span class="welcomeMessage">Login</span></a>
+</h1>
 <div class="content">
     <div class="header-bar"></div>
     <router-outlet></router-outlet>
