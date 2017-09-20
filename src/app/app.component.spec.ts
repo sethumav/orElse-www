@@ -3,11 +3,13 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { APP_CONTENT } from './app.content';
+import { AuthService, User } from './service/auth.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
+      imports: [RouterTestingModule],
+       providers: [AuthService],
       declarations: [
         AppComponent
       ],
