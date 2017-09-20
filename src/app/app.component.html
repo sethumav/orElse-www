@@ -3,7 +3,7 @@
 </header>
 <h1>
     {{title}}
-    <a [routerLink]="['auth']" *ngIf="user.username !== ''"><span class="welcomeMessage">Welcome {{user.username}}!/Logout</span></a>
+    <a (click)="logout()" *ngIf="user.username !== ''"><span class="welcomeMessage">Welcome {{user.username}}!/Logout</span></a>
     <a [routerLink]="['auth']" *ngIf="user.username === ''"><span class="welcomeMessage">Login</span></a>
 </h1>
 <div class="content">

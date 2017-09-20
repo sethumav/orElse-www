@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { APP_CONTENT } from './app.content';
 import { AuthService, User } from './service/auth.service';
 
@@ -10,7 +11,9 @@ import { AuthService, User } from './service/auth.service';
 export class AppComponent {
   private _title = APP_CONTENT.app_title;
   private _user;
-  constructor(authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private router: Router) {
     this._user = authService.user;
   }
   get title(): string{
@@ -18,5 +21,10 @@ export class AppComponent {
   }
   get user(): User {
     return this._user;
+  }
+  logout() {
+    this.authService.user = new User('', '');
+    this._user = this.authService.user;
+    this.router.navigate(['/auth']);
   }
 }

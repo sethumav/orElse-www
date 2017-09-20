@@ -7,3 +7,6 @@ span.welcomeMessage{
     color: black;
     padding-right: 30px;
 }
+a{
+    cursor: pointer;
+}
