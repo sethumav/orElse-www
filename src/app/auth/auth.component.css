@@ -1,0 +1,13 @@
+.loginCard{
+    margin:0 auto;
+    width: 600px;
+    text-align: center;
+}
+.loginButtonContainer{
+    padding-left: 210px;
+    text-align: left;
+}
+h2{
+    text-align: left;
+    padding-left: 205px;
+}

@@ -1,6 +1,12 @@
-header{
-    width: 100%;
-    background: url("/assets/image/bg-tile.jpg");
-    position: absolute;
-    top: 0;
+h1{
+    padding-left: 30px;
+}
+span.welcomeMessage{
+    float: right;
+    font-size: 20px;
+    color: black;
+    padding-right: 30px;
+}
+a{
+    cursor: pointer;
 }
