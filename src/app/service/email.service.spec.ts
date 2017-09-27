@@ -51,5 +51,19 @@ describe('when sendemail', () => {
                   'should have expected no. of status');
               });
     })));
+
+
+    it('Response status code is not one of invalid codes', async(inject(
+        [EmailService, MockBackend], (service, mockBackend) => {
+        const fakeEmailSendStatusCode = [400, 401, 403];
+        const options = new ResponseOptions({status: 200, body: {data: fakeEmailSendStatusCode}});
+        const response = new Response(options);
+        mockBackend.connections.subscribe((c: MockConnection) => c.mockRespond(response));
+        service.sendEmails(new MobData()).then(status => {
+                expect(status).not.toContain(fakeEmailSendStatusCode,
+                  'should have valid status code');
+              });
+    })));
+   
 });
 
