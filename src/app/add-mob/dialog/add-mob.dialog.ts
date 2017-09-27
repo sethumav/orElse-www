@@ -38,6 +38,8 @@ export class AddMobDialogComponent {
         this.mobListService.addMobData(this.mobData);
         // clear form after added
         this.mobData = new MobData();
+        this.mobData.subject =this.sharedService.getGlobalEmailSubject();
+        this.mobData.bridgeInfo =this.sharedService.getGlobalBridgeInformation();  
     }
 
     editMobData(mobData: MobData){
