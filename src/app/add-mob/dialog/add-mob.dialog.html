@@ -21,6 +21,11 @@
       <input [(ngModel)]="mobData.bridgeInfo" mdInput placeholder="Bridge" />
     </md-input-container>
   </div>
+  <div>
+    <md-input-container>
+      <input id="inputAddMopDialogApplication" [(ngModel)]="mobData.subject" mdInput placeholder="Subject" />
+    </md-input-container>   
+  </div>
   <div class="timeGroup">
     <label class="timeLabel">Change time:</label>
     <p-calendar [(ngModel)]="mobData.startTime" readonlyInput="true" placeholder="Start Time" showTime="showTime" hourFormat="24"></p-calendar>

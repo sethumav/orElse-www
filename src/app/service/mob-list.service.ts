@@ -33,6 +33,7 @@ export class MobData {
     preValidation: Date;
     postValidation: Date;
     bridgeInfo: string;
+    subject: string;
     hasShutdownRestart = false;
     shutDownTime: Date;
     restartTime: Date;

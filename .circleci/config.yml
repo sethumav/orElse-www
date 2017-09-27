@@ -45,8 +45,20 @@ jobs:
 
       - run:
           name: Running App Server
-          command: ./node_modules/@angular/cli/bin/ng serve
+          command: |
+           if [ "$CIRCLE_BRANCH" == "master" ]; then
+            ./node_modules/@angular/cli/bin/ng serve
+           fi
           background: true
 
-      - run: "sleep 25"
-      - run: "./node_modules/protractor/bin/protractor tunnelRemote.conf.js"
+      - run: 
+          command: |
+            if [ "$CIRCLE_BRANCH" == "master" ]; then
+               sleep 25
+            fi
+
+      - run: 
+          command: |
+           if [ "$CIRCLE_BRANCH" == "master" ]; then
+             ./node_modules/protractor/bin/protractor tunnelRemote.conf.js
+            fi

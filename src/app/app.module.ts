@@ -17,6 +17,8 @@ import { MobListService } from './service/mob-list.service';
 import { EmailService } from './service/email.service';
 import { AuthService } from './service/auth.service';
 
+import {SharedService } from './service/shared.service';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule, MdButtonModule, MdCheckboxModule, MdProgressSpinnerModule} from '@angular/material';
 import {CalendarModule} from 'primeng/primeng';
@@ -45,7 +47,7 @@ import 'hammerjs';
   entryComponents: [
     AddMobDialogComponent
   ],
-  providers: [MobListService, EmailService, AuthService],
+  providers: [MobListService, EmailService, AuthService, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
