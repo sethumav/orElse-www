@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { MobListService, MobData } from '../../service/mob-list.service';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 import { SharedService } from '../../service/shared.service';
+import { Environment } from './environment';
 
 @Component({
     selector: 'app-add-mob-dialog',
@@ -13,6 +14,11 @@ import { SharedService } from '../../service/shared.service';
 export class AddMobDialogComponent {
     mobData: MobData;
     isEdit = false;
+    environments = [
+        new Environment('prod', 'prod' ),
+        new Environment('uat', 'uat' ),
+        new Environment('dev', 'dev' )      
+     ];
    
     constructor(
         public dialogRef: MdDialogRef<AddMobDialogComponent>,
