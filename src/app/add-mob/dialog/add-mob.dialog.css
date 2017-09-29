@@ -2,6 +2,10 @@ label.timeLabel{
     float: left;
     width: 170px;
 }
+label.environment{
+    color: darkgray;
+    width: 120px;
+}
 span.toText{
     padding: 10px;
 }
