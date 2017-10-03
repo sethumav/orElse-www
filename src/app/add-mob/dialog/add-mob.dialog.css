@@ -4,7 +4,7 @@ label.timeLabel{
 }
 label.environment{
     color: darkgray;
-    width: 120px;
+    width: 180px;
 }
 span.toText{
     padding: 10px;
@@ -14,5 +14,6 @@ div.timeGroup{
     padding-bottom: 10px;
 }
 div.buttonContainerDialog {
-    margin-top: 25px;
+    margin-right: 25px;
+    margin-left: 25px;
 }
