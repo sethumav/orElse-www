@@ -1,4 +1,11 @@
 <h1 md-dialog-title>Let the magic begin!<span  *ngIf="isEdit">(Edit)</span><span  *ngIf="!isEdit"></span></h1>
+
+<div class="buttonContainerDialog buttonContainer">
+  <button id="btnMopDialogClose" md-dialog-close md-raised-button>Close</button>
+  <button id="btnAddEditMopDialog" class="primary" md-raised-button 
+                                 (click)="addRow()" *ngIf="!isEdit">Add</button>
+<div>
+
 <div id="addMobDialog">
     <md-input-container>
       <input [(ngModel)]="mobData.section" mdInput placeholder="Section" />
@@ -26,7 +33,7 @@
   </div>
   <div>
     <md-input-container>
-      <input id="inputAddMopDialogApplication" [(ngModel)]="mobData.subject" mdInput placeholder="Subject" />
+      <input id="inputAddMopDialogSubject" [(ngModel)]="mobData.subject" mdInput placeholder="Subject" />
     </md-input-container>   
   </div>
   <div class="timeGroup">
@@ -41,7 +48,7 @@
     <span class="toText">to</span>
     <p-calendar [(ngModel)]="mobData.postValidation" readonlyInput="true" placeholder="Pos-Validation" showTime="showTime" hourFormat="24"></p-calendar>
   </div>
-  <div class="timeGroup" style="height: 29px;">
+  <div class="timeGroup" style="height: 26px;">
     <label class="timeLabel">Shutdown/Restart time: </label>
     <input type="checkbox" [(ngModel)]="mobData.hasShutdownRestart" />
     <p-calendar *ngIf="mobData.hasShutdownRestart" [(ngModel)]="mobData.shutDownTime" readonlyInput="true" placeholder="Shutdown time" showTime="showTime" hourFormat="24"></p-calendar>
@@ -49,10 +56,6 @@
   </div>
   <div>
     <md-input-container>
-        <textarea cols="70" rows="10" [(ngModel)]="mobData.comment" mdInput placeholder="Comment" ></textarea>
+        <textarea cols="70" rows="8" [(ngModel)]="mobData.comment" mdInput placeholder="Comment" ></textarea>
     </md-input-container>
   </div>
-  <div class="buttonContainerDialog buttonContainer">
-    <button id="btnMopDialogClose" md-dialog-close md-raised-button>Close</button>
-    <button id="btnAddEditMopDialog" class="primary right" md-raised-button (click)="addRow()" *ngIf="!isEdit">Add</button>
-  <div>

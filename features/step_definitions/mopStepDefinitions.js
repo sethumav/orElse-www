@@ -22,16 +22,17 @@
               // open add/edit mop dialog
               var btnOpenAddMobDialog = element(by.css('#btnOpenAddMopDialog'));
               btnOpenAddMobDialog.click();
-              // fill in application and enviroment
-              var elEnv = element(by.css('#inputAddMopDialogEnviroment')).sendKeys("prod");
+              // fill in application and environment
+              var elEnv = element(by.cssContainingText('option', 'prod')).click();
               var elApp = element(by.css('#inputAddMopDialogApplication')).sendKeys("tcm");
-              // click dialog add button
+
               var btnAddEditMopDialog = element(by.css('#btnAddEditMopDialog'));
-              btnAddEditMopDialog.click();
-
-              var elEmail = element(by.css('div.email'));
-
-
+              browser.wait(EC.visibilityOf(element(by.css('#btnAddEditMopDialog'))), 5000, "btnAddEditMopDialog element is not visible").then(function() {
+                btnAddEditMopDialog.click();  
+              });           
+            
+             var elEmail = element(by.css('div.email'));
+          
               // close the dialog
               var btnMopDialogClose = element(by.css('#btnMopDialogClose'));
               var btnSubmitMops = element(by.css('#btnSubmitMops'));
