@@ -50,8 +50,10 @@
 
           Then('I should see a list of responsible person containing Daniel Yinanc', function (callback) {
             console.log("Inside Then");
+            var elName = element(by.css('div.name'));
+            expect(elName.getText()).to.eventually.equal("daniel yinanc").and.notify(callback);
             var elEmail = element(by.css('div.email'));
-            expect(elEmail.getText()).to.eventually.equal("daniel yinanc <daniel_yinanc@wsib.on.ca>").and.notify(callback);
+            expect(elEmail.getText()).to.eventually.equal("daniel_yinanc@wsib.on.ca").and.notify(callback);
           });
 
 
