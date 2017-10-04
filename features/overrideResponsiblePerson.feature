@@ -20,3 +20,4 @@ Scenario: Send the email to the updated name and email of Responsible person
  Add I modified name and email address on one of the results returned by the Search query for responsible persons.
  When I click Send Email after overriding the information
  Then I should be able to send the email to the newly updated name and/or email address
+ 
