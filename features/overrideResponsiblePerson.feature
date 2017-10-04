@@ -1,23 +1,16 @@
-Feature: Test override of Responsible person name and email address 
-         as a one time modification
+Feature: Override of Responsible person name and email address as a one time modification
 
-Scenario: Test override of Responsible Person when Get Responsible Person query 
-          returns one or more results.
+Scenario: Search for a responsible person using application and environment 
+ Given OrElse website is up and running. I have added a MOP and I am on Review page
+ When I query for responsible person using application and environment
+ Then I should see a list of responsible persons with their name and email address
 
- Given OrElse website is up and running 
-       and I have added a MOP
-       and I am on the Review page
+Scenario: Override of Responsible Person by modifying name and/or email address and save
+ Given OrElse website is up and running. Search query returned one or more responsible persons.
+ When I click on one responsible person
+ Then I should be able to modify the name and email address by clicking and overriding on a pop-up
+ And I should be able to click save on edit pop-up and see updated info on the UI
 
- When I query for responsible person
- Then I can see the list of responsible persons with their name and email address
-
- When I see a list of responsible persons on UI
- Then I can modify the responsible person name and email address by clicking 
-      on one of them and typing on the pop up
-
- When I modify the responsible person name and address information
- Then I should be able to save it as a one time modification 
-      and see the updated information on the UI
-
- When I click Send Email
+Scenario: Send the email to the updated name and email of Responsible person
+ When I click Send Email after overriding the information
  Then I should be able to send the email to the updated name and/or email address
