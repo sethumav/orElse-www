@@ -23,6 +23,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule, MdButtonModule, MdCheckboxModule, MdProgressSpinnerModule} from '@angular/material';
 import {CalendarModule} from 'primeng/primeng';
 import { AddMobDialogComponent } from './add-mob/dialog/add-mob.dialog';
+import { OverrideRespPersonDialogComponent } from './add-mob/dialog/override-resp-person.dialog';
+
+
 import 'hammerjs';
 
 @NgModule({
@@ -31,6 +34,7 @@ import 'hammerjs';
     AddMobComponent,
     ReviewComponent,
     AddMobDialogComponent,
+    OverrideRespPersonDialogComponent,
     AuthComponent
   ],
   imports: [
@@ -45,7 +49,7 @@ import 'hammerjs';
     MdProgressSpinnerModule
   ],
   entryComponents: [
-    AddMobDialogComponent
+    AddMobDialogComponent, OverrideRespPersonDialogComponent
   ],
   providers: [MobListService, EmailService, AuthService, SharedService],
   bootstrap: [AppComponent]

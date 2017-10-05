@@ -16,7 +16,11 @@ export class EmailRequest {
     emailNameAddresses: ResponsiblePerson[];
     constructor(from: ResponsiblePerson, subject: string, emailBody: string, emailNameAddresses: ResponsiblePerson[]) {
         this.from = from;
-        this.subject = subject;
+        if(subject.trim().length < 1){
+            this.subject = 'Please confirm your task!';
+        } else {
+            this.subject = subject;
+        }
         this.emailBody = emailBody;
         this.emailNameAddresses = emailNameAddresses;
     }

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { MobListService, MobData } from '../service/mob-list.service';
 import { DataSource } from '@angular/cdk';
 import { EmailService } from '../service/email.service';
+import { MdDialog, MdDialogConfig } from '@angular/material';
+import {OverrideRespPersonDialogComponent} from '../add-mob/dialog/override-resp-person.dialog'
 
 import 'rxjs/add/operator/toPromise';
 
@@ -20,8 +22,16 @@ export class ReviewComponent implements AfterViewChecked {
     private emailService: EmailService;
     public dataSource: DataSource<MobData>;
     displayedColumns = ['section', 'task', 'application', 'respPerson'];
+    dialogConfig: MdDialogConfig = {
+        disableClose: false,
+        role: 'dialog',
+        height: '300px',
+        width: '600px',
+      };
 
-    constructor(mobListService: MobListService, emailService: EmailService) {
+    constructor(mobListService: MobListService, 
+                emailService: EmailService,  
+                public dialog: MdDialog) {
         this.mobListService = mobListService;
         // this.dataSource = this.mobListService.mbDataSource;
         this.emailService =emailService;
@@ -44,6 +54,12 @@ export class ReviewComponent implements AfterViewChecked {
         for( let i in this.mobListService.mobDatas){
             mobData = this.mobListService.mobDatas[i];
             this.emailService.sendEmails( mobData);
+        }
+    }
+    showOverrideRespPersonDialog(mobData?: MobData) {
+        const overrideDialog = this.dialog.open(OverrideRespPersonDialogComponent, this.dialogConfig);
+        if (mobData !== undefined) {
+            overrideDialog.componentInstance.showOverrideRespPersonDialog(mobData);
         }
     }
 }

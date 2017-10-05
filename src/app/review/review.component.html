@@ -2,7 +2,7 @@
   <button id="btnSendEmails" class="primary right" (click)="sendEmails()" md-raised-button>Send Emails</button>
 </div>
 <p>
-  Please review MOP data below and clicd Send Email button to send emails.
+  Please review MOP data below and click Send Email button to send emails.
 </p>
 <table id="mopDataList" class="mobList" *ngIf="mobListService.mobDatas.length > 0">
   <thead>
@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr (click)="showNewMobDialog(mobData)" *ngFor="let mobData of mobListService.mobDatas">
+    <tr (click)="showOverrideRespPersonDialog(mobData)" *ngFor="let mobData of mobListService.mobDatas">
       <td>{{mobData.section}}</td>
       <td>{{mobData.task}}</td>
       <td>{{mobData.environment}}</td>
@@ -40,9 +40,12 @@
       <td>{{mobData.comment}}</td>
       <td>
         <div class="respPersonCol" *ngFor="let respPerson of mobData.respPersons">
-          <div class="email">
-            {{respPerson.name}}&#160;&lt;{{respPerson.email}}&gt;
+          <div class="name"> 
+            {{respPerson.name}}
           </div>
+          <div class="email">
+              {{respPerson.email}}
+            </div>
           <div class="emailSendStatus">
             <md-progress-spinner *ngIf="sendingEmails && !respPerson.sent" class="emailSending" [color]="color" [mode]="mode" [value]="value">
             </md-progress-spinner>

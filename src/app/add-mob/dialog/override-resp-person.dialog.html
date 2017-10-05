@@ -1,0 +1,17 @@
+<h1 md-dialog-title>Override Responsible Person</h1>
+
+<div class="buttonContainerDialog buttonContainer">
+  <button id="btnOverrideDialogSave" class="primary" 
+         md-dialog-close md-raised-button  md-dialog-save>Save</button>   
+<div>
+
+<div id="overrideResponsiblePersonDialog">
+        <div class="respPersonCol" *ngFor="let respPerson of mobData.respPersons">
+                <md-input-container>
+                   <input id="inputAddMopDialogRespPersonName" [(ngModel)]="respPerson.name" mdInput placeholder="Responsible Person" />
+                </md-input-container>  
+                <md-input-container>
+                  <input id="inputAddMopDialogRespPersonEmail" [(ngModel)]="respPerson.email" mdInput placeholder="Email" />
+                </md-input-container>  
+        </div> 
+</div>
