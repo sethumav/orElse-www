@@ -3,9 +3,9 @@
        
 </div>
 <p>
-    {{application}} in {{environment}} a {{task}} needs to be performed.
+    {{application}} in {{environment}} a task {{task}} needs to be performed.
     {{#startTime}}You will 
-    need to validate it at {{startTime}} - {{endTime}}. {{/startTime}}
+    need to validate it at {{startTime}}{{/startTime}} {{#endTime}}- {{endTime}}{{/endTime}}. 
 </p>
 
 {{#hasShutdownRestart}}
@@ -18,8 +18,9 @@
 {{#hasShutdownRestart}}
        {{#shutDownTime}}
            <p>If shutdown is required then you will need to shutdown the application on 
-             {{shutDownTime}}. And you will need to perform pre-validation on {{preValidation}} and post-validation on
-             {{postValidation}}.
+             {{shutDownTime}}. And you will need to perform {{#preValidation}} pre-validation on 
+             {{preValidation}} {{/preValidation}} 
+             {{#postValidation}}and post-validation on {{postValidation}}{{/postValidation}}.
            </p>
        {{/shutDownTime}}
 {{/hasShutdownRestart}}
