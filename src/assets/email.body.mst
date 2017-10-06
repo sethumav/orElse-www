@@ -10,14 +10,14 @@
 
 {{#hasShutdownRestart}}
        {{#restartTime}}
-          <p>If restart is required then you will need 
+          <p>Restart is required then you will need 
                        to restart the application on {{restartTime}}.</p>
        {{/restartTime}}
 {{/hasShutdownRestart}}
 
 {{#hasShutdownRestart}}
        {{#shutDownTime}}
-           <p>If shutdown is required then you will need to shutdown the application on 
+           <p>Shutdown is required then you will need to shutdown the application on 
              {{shutDownTime}}. And you will need to perform {{#preValidation}} pre-validation on 
              {{preValidation}} {{/preValidation}} 
              {{#postValidation}}and post-validation on {{postValidation}}{{/postValidation}}.
