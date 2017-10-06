@@ -1,9 +1,35 @@
-<div>Greetings,</div>
+<div>Greetings 
+    {{#respPersons}}{{name}} {{/respPersons}},
+       
+</div>
 <p>
-    {{application}} in {{environment}} will need to be validated and shutdown/restarted (if required) between {{startTime}}-{{endTime}}.
+    {{application}} in {{environment}} a {{task}} needs to be performed.
+    {{#startTime}}You will 
+    need to validate it at {{startTime}} - {{endTime}}. {{/startTime}}
 </p>
+
+{{#hasShutdownRestart}}
+       {{#restartTime}}
+          <p>If restart is required then you will need 
+                       to restart the application on {{restartTime}}.</p>
+       {{/restartTime}}
+{{/hasShutdownRestart}}
+
+{{#hasShutdownRestart}}
+       {{#shutDownTime}}
+           <p>If shutdown is required then you will need to shutdown the application on 
+             {{shutDownTime}}. And you will need to perform pre-validation on {{preValidation}} and post-validation on
+             {{postValidation}}.
+           </p>
+       {{/shutDownTime}}
+{{/hasShutdownRestart}}
+
 <p>
-    Bridge information: {{anything1}}
+  Additional Comments : {{comment}}
+</p>
+
+<p>
+    Bridge information: {{bridgeInfo}}
 </p>
 <p>
     Please respond to this email in 48 hours to confirm your attendance.
