@@ -24,7 +24,7 @@
               btnOpenAddMobDialog.click();
               // fill in application and environment
               var elEnv = element(by.cssContainingText('option', 'prod')).click();
-              var elApp = element(by.css('#inputAddMopDialogApplication')).sendKeys("tcm");
+              var elApp = element(by.css('#inputAddMopDialogApplication')).sendKeys("ACES Viewer");
 
               var btnAddEditMopDialog = element(by.css('#btnAddEditMopDialog'));
               browser.wait(EC.visibilityOf(element(by.css('#btnAddEditMopDialog'))), 5000, "btnAddEditMopDialog element is not visible").then(function() {
@@ -48,12 +48,12 @@
 
 
 
-          Then('I should see a list of responsible person containing Daniel Yinanc', function (callback) {
+          Then('I should see a list of responsible person containing Glen Johnson', function (callback) {
             console.log("Inside Then");
             var elName = element(by.css('div.name'));
-            expect(elName.getText()).to.eventually.equal("daniel yinanc").and.notify(callback);
+            expect(elName.getText()).to.eventually.equal("Glen Johnson").and.notify(callback);
             var elEmail = element(by.css('div.email'));
-            expect(elEmail.getText()).to.eventually.equal("daniel_yinanc@wsib.on.ca").and.notify(callback);
+            expect(elEmail.getText()).to.eventually.equal("Glen_Johnson@wsib.on.ca").and.notify(callback);
           });
 
 

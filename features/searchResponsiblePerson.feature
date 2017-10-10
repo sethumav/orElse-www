@@ -6,7 +6,7 @@ production support when a new MOP is
 Scenario: Search for a responsible person using application and enverionment
   Given OrElse website is up and running
   When I enter application name as tcm and environment as prod
-  Then I should see a list of responsible person containing Daniel Yinanc
+  Then I should see a list of responsible person containing Glen Johnson
 
 Scenario: Search but not find a responsible person using application and environment
   Given OrElse website is up and running

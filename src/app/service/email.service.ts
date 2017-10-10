@@ -9,6 +9,64 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import { MobData } from '../service/mob-list.service';
 import * as Mustache from 'mustache';
+
+class FormattedMobData {
+        formattedSection: string;
+        ormattedTask: string;
+        formattedApplication: String;
+        formattedStartTime: String;
+        formattedEndTime: String;
+        formattedEnvironment: string;
+        formattedResourceGroup: string;
+        formattedComment: string;
+        formattedRespPersons: ResponsiblePerson[];
+        formattedPreValidation: String;
+        formattedPostValidation: String;
+        formattedBridgeInfo: string;
+        formattedSubject: string;
+        formattedHasShutdownRestart = false;
+        formattedShutDownTime: String;
+        formattedRestartTime: String;
+    
+        constructor(mob: MobData){
+            
+           this.formattedApplication = mob.application;
+           this.formattedEnvironment = mob.environment;
+           this.formattedSection = mob.section;
+           this.formattedResourceGroup = mob.resourceGroup;
+           this.formattedBridgeInfo = mob.bridgeInfo;
+           this.formattedComment = mob.comment;
+           this.formattedSubject = mob.subject;
+           this.formattedHasShutdownRestart = mob.hasShutdownRestart;
+           this.formattedRespPersons = new Array<ResponsiblePerson>();
+           if(mob.respPersons!=null){
+            for (let formattedRespPerson of mob.respPersons) {
+                this.formattedRespPersons[0] = formattedRespPerson;  
+            }
+           }
+           this.formattedStartTime = this.formatDate(mob.startTime);        
+           this.formattedEndTime =   this.formatDate(mob.endTime);
+           this.formattedPreValidation =   this.formatDate(mob.preValidation);
+           this.formattedPostValidation =   this.formatDate(mob.postValidation);
+           this.formattedShutDownTime =   this.formatDate(mob.shutDownTime);
+           this.formattedRestartTime = this.formatDate(mob.restartTime);      
+        }
+    
+        formatDate(inputDate: Date) {
+            if (inputDate!= null){
+            return inputDate.getMonth() + 1 + "/" +
+                inputDate.getDate() + "/" +
+                inputDate.getFullYear() + " " +
+                inputDate.getHours() + ":" +
+                inputDate.getMinutes() + ":" +
+                inputDate.getSeconds()
+            }
+            return null;
+        };
+        
+     
+}
+
 export class EmailRequest {
     from: ResponsiblePerson;
     subject: string;
@@ -41,6 +99,8 @@ export class EmailService {
         this.loadEmailTemplate().subscribe(this.loadEmailTemplateSubject);
     }
     sendEmails(mob: MobData): Promise<boolean[]> {
+        var formattedMob = new FormattedMobData(mob);
+
         const headers = new Headers({ 'Content-Type': 'application/json' });
         // get replay subjet as observable as it is a replaysubject with 1 previous result this will gurrantee that not matter how many time 
         // sendEmails called the template only gets fetched once as the replaysubject will always return the previous result
@@ -50,7 +110,7 @@ export class EmailService {
                     console.log(templates[1].text());
                     return this.http
                     .post(environment.emailService,
-                        JSON.stringify(new EmailRequest(this.from, Mustache.render(templates[0].text(), mob), Mustache.render(templates[1].text(), mob), mob.respPersons)), { headers: headers })
+                        JSON.stringify(new EmailRequest(this.from, Mustache.render(templates[0].text(), formattedMob), Mustache.render(templates[1].text(), formattedMob), formattedMob.formattedRespPersons)), { headers: headers })
                     .toPromise()
                     .then((response) => {
                         console.log(response);
