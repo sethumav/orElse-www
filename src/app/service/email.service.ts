@@ -12,7 +12,7 @@ import * as Mustache from 'mustache';
 
 class FormattedMobData {
         formattedSection: string;
-        ormattedTask: string;
+        formattedTask: string;
         formattedApplication: String;
         formattedStartTime: String;
         formattedEndTime: String;
@@ -37,6 +37,7 @@ class FormattedMobData {
            this.formattedBridgeInfo = mob.bridgeInfo;
            this.formattedComment = mob.comment;
            this.formattedSubject = mob.subject;
+           this.formattedTask = mob.task;
            this.formattedHasShutdownRestart = mob.hasShutdownRestart;
            this.formattedRespPersons = new Array<ResponsiblePerson>();
            if(mob.respPersons!=null){
