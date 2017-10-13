@@ -41,10 +41,10 @@ class FormattedMobData {
            this.formattedHasShutdownRestart = mob.hasShutdownRestart;
            this.formattedRespPersons = new Array<ResponsiblePerson>();
            if(mob.respPersons!=null){
-            for (let formattedRespPerson of mob.respPersons) {
-                this.formattedRespPersons[0] = formattedRespPerson;  
-            }
-           }
+             for (var i = 0; i < mob.respPersons.length; i++) {
+                this.formattedRespPersons[i] = mob.respPersons[i];  
+             }            
+           }           
            this.formattedStartTime = this.formatDate(mob.startTime);        
            this.formattedEndTime =   this.formatDate(mob.endTime);
            this.formattedPreValidation =   this.formatDate(mob.preValidation);
