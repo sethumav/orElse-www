@@ -94,7 +94,7 @@ export class EmailService {
     // create a replay subject which always return the previous one result
     private loadEmailTemplateSubject = new ReplaySubject(1);
     constructor(http: Http) {
-        this.from = new ResponsiblePerson('Brain Trust', 'braintrust@wsib.on.ca');
+        this.from = new ResponsiblePerson('Bohdan Zaremba', 'Bohdan_Zaremba@wsib.on.ca');
         this.http = http;
         // call loadEmailTemplate to get obserable for fetching email templates, then subscribt it using the replay subject
         this.loadEmailTemplate().subscribe(this.loadEmailTemplateSubject);
