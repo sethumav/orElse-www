@@ -91,6 +91,32 @@ describe('when sendemail', () => {
                   'should have expected status');
               });
     })));
+
+    it('Send emails to multiple responsible persons correctly', async(inject(
+        [EmailService, MockBackend], (service, mockBackend) => {
+        const fakeEmailSendStatusData = [true, true];
+        const fromRespPerson = new ResponsiblePerson("Joe", "joe@test.com");
+        const emailNameAddress1 = new ResponsiblePerson("Jane", "jane@test.com");
+        const emailNameAddress2 = new ResponsiblePerson("John", "john@test.com");
+        const emailNameAddresses = new Array<ResponsiblePerson>();
+        emailNameAddresses.push(emailNameAddress1); 
+        emailNameAddresses.push(emailNameAddress2);      
+        const emailSubject = "";
+        const emailBody = "Test Email Body";
+        const emailRequest = new EmailRequest( fromRespPerson,
+                                               emailSubject,
+                                               emailBody,
+                                               emailNameAddresses
+                                             );       
+
+        const options = new ResponseOptions({status: 200, body: {data: fakeEmailSendStatusData}});
+        const response = new Response(options);
+        mockBackend.connections.subscribe((c: MockConnection) => c.mockRespond(response));
+        service.sendEmails(new MobData()).then(status => {
+                expect(status.length).toBe(fakeEmailSendStatusData.length,
+                  'should have expected no. of status');
+              });
+    })));
    
 });
 
