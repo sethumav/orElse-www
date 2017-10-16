@@ -1,0 +1,12 @@
+<h1 md-dialog-title>Let the magic begin!</h1>
+
+<div class="buttonContainerDialog buttonContainer">
+  <button id="btnCrDialogClose" md-dialog-close md-raised-button>Close</button>
+  <button id="btnAddCrDialog" class="primary" md-raised-button (click)="addRow()">Add</button>
+</div>
+
+<div id="addCrDialog">
+    <md-input-container>
+      <input [(ngModel)]="crData.name" mdInput placeholder="Name" />
+    </md-input-container>
+  </div>

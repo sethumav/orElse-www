@@ -20,6 +20,6 @@ export class AuthComponent {
   }
   auth() {
     this.authService.authenticate(this.user);
-    this.router.navigate(['/addmob']);
+    this.router.navigate(['/addcr']);
   }
 }

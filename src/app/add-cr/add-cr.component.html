@@ -1,0 +1,19 @@
+<div class="buttonContainer">
+    <button id="btnOpenAddCrDialog" class="primary" (click)="showNewCrDialog()" md-raised-button>Create CR</button>
+
+    <md-progress-spinner *ngIf="loading" class="buttonSideSpinner" [color]="color" [mode]="mode" [value]="value">
+    </md-progress-spinner>
+  </div>
+
+<table id="crDataList" class="crList" *ngIf="crListService.crDatas.length > 0">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr (click)="addMob()" *ngFor="let crData of crListService.crDatas">
+      <td>{{crData.name}}</td>
+    </tr>
+  </tbody>
+</table>

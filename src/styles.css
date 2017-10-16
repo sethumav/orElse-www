@@ -83,3 +83,24 @@ table.mobList tr:hover td{
   background-color: blanchedalmond;
   cursor: pointer;
 }
+
+table.crList{
+  width: 100%;
+  border-collapse: collapse; 
+  margin: 30px 0px;
+}
+table.crList th{
+  text-transform: capitalize;
+  text-align: left;
+  padding-bottom: 10px;
+  border-bottom: 2px solid green;
+}
+table.crList td{
+  color: black;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 1px solid gray;
+}
+table.crList tr:hover td{
+  background-color: blanchedalmond;
+  cursor: pointer;
+}
