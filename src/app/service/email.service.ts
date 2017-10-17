@@ -40,13 +40,11 @@ class FormattedMobData {
            this.formattedTask = mob.task;
            this.formattedHasShutdownRestart = mob.hasShutdownRestart;
            this.formattedRespPersons = new Array<ResponsiblePerson>();
-           
-
-          /* if(mob.respPersons!=null){
+           if(mob.respPersons!=null){
              for (var i = 0; i < mob.respPersons.length; i++) {
                 this.formattedRespPersons[i] = mob.respPersons[i];  
              }            
-           }  */         
+           }           
            this.formattedStartTime = this.formatDate(mob.startTime);        
            this.formattedEndTime =   this.formatDate(mob.endTime);
            this.formattedPreValidation =   this.formatDate(mob.preValidation);
@@ -102,15 +100,8 @@ export class EmailService {
         this.loadEmailTemplate().subscribe(this.loadEmailTemplateSubject);
     }
     sendEmails(mob: MobData): Promise<boolean[]> {
+        var formattedMob = new FormattedMobData(mob);
 
-        
-        if(mob.respPersons!=null){
-            var formattedMob = new FormattedMobData(mob);
-            for (var i = 0; i < mob.respPersons.length; i++) {
-               formattedMob.formattedRespPersons[i] = mob.respPersons[i];  
-               
-                       
-       
         const headers = new Headers({ 'Content-Type': 'application/json' });
         // get replay subjet as observable as it is a replaysubject with 1 previous result this will gurrantee that not matter how many time 
         // sendEmails called the template only gets fetched once as the replaysubject will always return the previous result
@@ -132,8 +123,6 @@ export class EmailService {
                     })
                     .catch(this.handleError);
                 }).toPromise();
-            }
-            }
     }
     
     private loadEmailTemplate(){

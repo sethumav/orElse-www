@@ -10,6 +10,12 @@ export const environment = {
     url: 'http://localhost:8090/getResponsiblePersonByApplicationAndEnvironment',
     appParam: 'application',
     envParam: 'environment'
+  },
+  changeRequestService: {
+    url: 'http://localhost:8080/v2/changeRequests/save'
+  },
+  changeRequestGetAllService: {
+    url: 'http://localhost:8080/v2/changeRequests/get/all'
   }
 };
 

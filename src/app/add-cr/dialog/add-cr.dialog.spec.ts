@@ -7,6 +7,7 @@ import { MdDialogRef, MdDialogModule } from "@angular/material";
 import { CrListService } from '../../service/cr-list.service';
 import { SharedService } from '../../service/shared.service';
 import { FormsModule} from '@angular/forms';
+import { Http } from '@angular/http';
 
 import { By }              from '@angular/platform-browser';
 import { DebugElement }    from '@angular/core';
@@ -27,6 +28,7 @@ describe("AddMobDialogComponent", () => {
       imports: [FormsModule, MdDialogModule],
       providers: [
         { provide: MdDialogRef, useClass: MdDialogRefMock},
+        {  provide: Http },
         CrListService
       ]
     })

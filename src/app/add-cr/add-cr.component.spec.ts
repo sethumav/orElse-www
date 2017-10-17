@@ -7,11 +7,9 @@ import { MdDialogRef, MdDialogModule } from "@angular/material";
 import { CrListService } from '../service/cr-list.service';
 import { APP_CONTENT } from '../app.content';
 import { Http } from '@angular/http';
-
  
 import { By }              from '@angular/platform-browser';
 import { DebugElement }    from '@angular/core';
-
 
 class MdDialogRefMock {
 }
@@ -29,6 +27,7 @@ describe("AddCrComponent", () => {
       imports: [MdDialogModule, RouterTestingModule],
       providers: [
         { provide: MdDialogRef, useClass: MdDialogRefMock, Router },
+        { provide: Http},
           CrListService
       ]
     })

@@ -6,6 +6,9 @@ import { DatePipe } from '@angular/common';
 import { MaterialModule, MdProgressSpinnerModule } from '@angular/material';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 import { AddCrDialogComponent } from './dialog/add-cr.dialog';
+import { ChangeRequest } from './../service/cr-list.service'
+
+
 @Component({
   templateUrl: './add-cr.component.html',
   styleUrls: ['./add-cr.component.css']
@@ -38,6 +41,16 @@ export class AddCrComponent {
 
   addMob(){
     this.router.navigate(['/addmob']);
+  }  
+
+  ngOnInit(){
+    this.loading = false;
+    this.crListService.getAllChangeRequests()
+    .subscribe(results => {
+      this.loading = false;
+      this.crListService.updateChangeRequestList(results);
+      //this.router.navigate(['/review']);
+    });
   }
 
 }
