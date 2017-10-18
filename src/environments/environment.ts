@@ -7,7 +7,8 @@ export const environment = {
   production: false,
   emailService: 'http://localhost:8080/v1/email/send',
   responsiblePersonService: {
-    url: 'http://localhost:8090/getResponsiblePersonByApplicationAndEnvironment',
+    //url: 'http://localhost:8090/getResponsiblePersonByApplicationAndEnvironment',
+    url: 'https://braintrustwsib.ddns.net/api/responsibleperson-microservice/getResponsiblePersonByApplicationAndEnvironment',    
     appParam: 'application',
     envParam: 'environment'
   },
@@ -16,6 +17,9 @@ export const environment = {
   },
   changeRequestGetAllService: {
     url: 'http://localhost:8080/v2/changeRequests/get/all'
+  },
+  changeRequestGetAllMopService: {
+    url: 'http://localhost:8080/v2/methodOfProcedures/get/changeRequestId'    
   }
 };
 

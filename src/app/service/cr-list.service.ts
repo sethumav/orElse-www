@@ -27,7 +27,7 @@ export class CrListService {
     constructor(private http: Http) {
     }
 
-    addCrData(crData: CrData) {
+    addCrData (crData: CrData): Promise<Response> {
         this._crDatas.push(crData);
         const headers = new Headers({ 'Content-Type': 'application/json' });        
         const changeRequest = new ChangeRequest(null, crData.name);
@@ -39,8 +39,7 @@ export class CrListService {
                 return response.json().data as string;
             })
             .catch(this.handleError);
-           
-    }
+    }    
     
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error);
@@ -65,6 +64,13 @@ export class CrListService {
             crl.push(new ChangeRequest(results[i]['id'], results[i]['name']));
          }
         this._crDatas = crl;
+    }
+
+    getAllMopsForChangeRequest(crData:CrData){
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http
+            .get(environment.changeRequestGetAllMopService.url + '/' + crData.id)
+            .map(res => res.json());
     }
    
 }

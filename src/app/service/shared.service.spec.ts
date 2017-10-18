@@ -4,6 +4,7 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { SharedService } from './shared.service';
 import { BaseRequestOptions, ConnectionBackend, Http, RequestOptions, HttpModule, XHRBackend } from '@angular/http';
 import { Response, ResponseOptions } from '@angular/http';
+import { CrData } from './cr-list.service';
 
 describe('SharedService', () => {
   beforeEach(() => {
@@ -34,4 +35,13 @@ describe('SharedService', () => {
      expect(service.getGlobalBridgeInformation()).toEqual('test');
   }))
   
+  it('should set and retreive crData information correctly', 
+  inject([SharedService], (service: SharedService) => {
+  var crData = new CrData();  
+  crData.id = 1;
+  crData.name = "Change Request One";
+  service.updateGlobalCrData(crData);
+  expect(service.getGlobalCrData()).toEqual(crData);
+  }))
+
 });

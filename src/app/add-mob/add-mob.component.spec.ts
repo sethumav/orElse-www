@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MdDialogRef, MdDialogModule } from "@angular/material";
 import { MobListService } from '../service/mob-list.service';
+import { CrListService } from '../service/cr-list.service';
+import { SharedService } from '../service/shared.service';
 import { APP_CONTENT } from '../app.content';
 import { Http } from '@angular/http';
 
@@ -30,7 +32,7 @@ describe("AddMobComponent", () => {
       providers: [
         { provide: MdDialogRef, useClass: MdDialogRefMock, Router },
         {  provide: Http },
-        MobListService
+        MobListService, CrListService, SharedService
       ]
     })
     .compileComponents();

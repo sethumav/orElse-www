@@ -7,6 +7,7 @@ import { MaterialModule, MdProgressSpinnerModule } from '@angular/material';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 import { AddCrDialogComponent } from './dialog/add-cr.dialog';
 import { ChangeRequest } from './../service/cr-list.service'
+import { SharedService } from './../service/shared.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class AddCrComponent {
   value = 50;
   public loading = false;
   crListService: CrListService;
+  private sharedService: SharedService;
   public crData: CrData;
   dialogConfig: MdDialogConfig = {
     disableClose: false,
@@ -29,9 +31,12 @@ export class AddCrComponent {
   constructor(
     public dialog: MdDialog,
     private router: Router,
-    crListService: CrListService
+    crListService: CrListService,
+    sharedService: SharedService
+    
   ) {
     this.crListService = crListService;
+    this.sharedService = sharedService;
     this.crData = new CrData();
   }
 
@@ -39,8 +44,9 @@ export class AddCrComponent {
     const crDialog = this.dialog.open(AddCrDialogComponent, this.dialogConfig);   
   }
 
-  addMob(){
-    this.router.navigate(['/addmob']);
+  gotoMobList(crData: CrData){
+      this.sharedService.updateGlobalCrData(crData);
+      this.router.navigate(['/addmob']);
   }  
 
   ngOnInit(){
@@ -48,8 +54,7 @@ export class AddCrComponent {
     this.crListService.getAllChangeRequests()
     .subscribe(results => {
       this.loading = false;
-      this.crListService.updateChangeRequestList(results);
-      //this.router.navigate(['/review']);
+      this.crListService.updateChangeRequestList(results);      
     });
   }
 

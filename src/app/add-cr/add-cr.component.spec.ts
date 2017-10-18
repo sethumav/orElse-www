@@ -7,6 +7,7 @@ import { MdDialogRef, MdDialogModule } from "@angular/material";
 import { CrListService } from '../service/cr-list.service';
 import { APP_CONTENT } from '../app.content';
 import { Http } from '@angular/http';
+import { SharedService } from '../service/shared.service';
  
 import { By }              from '@angular/platform-browser';
 import { DebugElement }    from '@angular/core';
@@ -28,7 +29,7 @@ describe("AddCrComponent", () => {
       providers: [
         { provide: MdDialogRef, useClass: MdDialogRefMock, Router },
         { provide: Http},
-          CrListService
+          CrListService, SharedService
       ]
     })
     .compileComponents();

@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr (click)="addMob()" *ngFor="let crData of crListService.crDatas">
+    <tr (click)="gotoMobList(crData)" *ngFor="let crData of crListService.crDatas">
       <td>{{crData.name}}</td>
     </tr>
   </tbody>

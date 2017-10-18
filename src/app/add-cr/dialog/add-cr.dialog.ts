@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Renderer } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
-import { Observable } from 'rxjs/Rx';
 import { CrListService, CrData } from '../../service/cr-list.service';
 import { MdDialog, MdDialogConfig } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'app-add-cr-dialog',
@@ -12,7 +12,7 @@ import { MdDialog, MdDialogConfig } from '@angular/material';
 export class AddCrDialogComponent {
     crData: CrData;
     isEdit = false;
-  
+    public loading = false;  
    
     constructor(
         public dialogRef: MdDialogRef<AddCrDialogComponent>,
@@ -22,7 +22,12 @@ export class AddCrDialogComponent {
     }
 
     addRow() {              
-        this.crListService.addCrData(this.crData);    
-    }
+        this.crListService.addCrData(this.crData).then(async =>{
+       //afer adding a new CR, refresh  _crDatas
+       this.crListService.getAllChangeRequests()
+        .subscribe(results => {
+          this.loading = false;
+          this.crListService.updateChangeRequestList(results);      
+    })})};
 
 }
