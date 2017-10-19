@@ -58,12 +58,7 @@ export class CrListService {
     }
 
     updateChangeRequestList(results) {
-        let crl: ChangeRequest[];
-        crl = [];
-        for (let i = 0; i < results.length; i++) {
-            crl.push(new ChangeRequest(results[i]['id'], results[i]['name']));
-         }
-        this._crDatas = crl;
+        this._crDatas =results;            
     }
 
     getAllMopsForChangeRequest(crData:CrData){

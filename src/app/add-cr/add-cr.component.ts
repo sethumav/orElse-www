@@ -19,8 +19,6 @@ export class AddCrComponent {
   mode = 'indeterminate';
   value = 50;
   public loading = false;
-  crListService: CrListService;
-  private sharedService: SharedService;
   public crData: CrData;
   dialogConfig: MdDialogConfig = {
     disableClose: false,
@@ -31,9 +29,8 @@ export class AddCrComponent {
   constructor(
     public dialog: MdDialog,
     private router: Router,
-    crListService: CrListService,
-    sharedService: SharedService
-    
+    private crListService: CrListService,
+    private sharedService: SharedService    
   ) {
     this.crListService = crListService;
     this.sharedService = sharedService;
