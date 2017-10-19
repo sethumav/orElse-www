@@ -10,5 +10,14 @@ export const environment = {
     url: 'https://braintrustwsib.ddns.net/api/responsibleperson-microservice/getResponsiblePersonByApplicationAndEnvironment',
     appParam: 'application',
     envParam: 'environment'
+  },
+  changeRequestService: {
+    url: 'http://localhost:8080/v2/changeRequests/save'
+  },
+  changeRequestGetAllService: {
+    url: 'http://localhost:8080/v2/changeRequests/get/all'
+  },
+  changeRequestGetAllMopService: {
+    url: 'http://localhost:8080/v2/methodOfProcedures/get/changeRequestId'    
   }
 };

@@ -46,12 +46,15 @@ export class MobListService {
     private _mobDatas: MobData[] = [];
     constructor(private http: Http) {
     }
+    
     addMobData(mobData: MobData) {
         this._mobDatas.push(mobData);
     }
+
     get mobDatas(): MobData[]{
         return this._mobDatas;
     }
+
     getRespPerson() {
         const requests = [];
         for (const key of Object.keys(this._mobDatas)){
@@ -70,12 +73,23 @@ export class MobListService {
             this._mobDatas[i].respPersons = rps;
         }
     }
+
     getResponsiblePersonRequest(mobData: MobData) {
         const headers = new Headers({ 'Content-Type': 'application/json' });
+        console.log("RP Url: " + environment.responsiblePersonService.url);
         return this.http
             .get(environment.responsiblePersonService.url
                 + '?' + environment.responsiblePersonService.appParam + '=' + mobData.application
                 + '&' + environment.responsiblePersonService.envParam + '=' + mobData.environment)
             .map(res => res.json());
+    }
+
+    updateMobDatas(results) {
+        let mdata : MobData[];
+        mdata = [];
+        for (let i=0; i < results.length; i++){
+            mdata.push(results[i]);
+        }
+        this._mobDatas = mdata;        
     }
 }

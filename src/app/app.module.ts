@@ -25,6 +25,10 @@ import {CalendarModule} from 'primeng/primeng';
 import { AddMobDialogComponent } from './add-mob/dialog/add-mob.dialog';
 import { OverrideRespPersonDialogComponent } from './add-mob/dialog/override-resp-person.dialog';
 
+import { CrListService }  from './service/cr-list.service';
+import { AddCrComponent } from './add-cr/add-cr.component';
+import { AddCrDialogComponent } from './add-cr/dialog/add-cr.dialog';
+
 
 import 'hammerjs';
 
@@ -35,7 +39,9 @@ import 'hammerjs';
     ReviewComponent,
     AddMobDialogComponent,
     OverrideRespPersonDialogComponent,
-    AuthComponent
+    AuthComponent,
+    AddCrComponent,
+    AddCrDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,9 +55,9 @@ import 'hammerjs';
     MdProgressSpinnerModule
   ],
   entryComponents: [
-    AddMobDialogComponent, OverrideRespPersonDialogComponent
+    AddMobDialogComponent, OverrideRespPersonDialogComponent, AddCrDialogComponent
   ],
-  providers: [MobListService, EmailService, AuthService, SharedService],
+  providers: [MobListService, EmailService, AuthService, SharedService, CrListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
