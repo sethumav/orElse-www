@@ -37,9 +37,7 @@ describe('SharedService', () => {
   
   it('should set and retreive crData information correctly', 
   inject([SharedService], (service: SharedService) => {
-  var crData = new CrData();  
-  crData.id = 1;
-  crData.name = "Change Request One";
+  var crData = new CrData(1, "Change Request One");  
   service.updateGlobalCrData(crData);
   expect(service.getGlobalCrData()).toEqual(crData);
   }))

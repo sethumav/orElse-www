@@ -36,7 +36,7 @@ export class AddCrComponent {
   ) {
     this.crListService = crListService;
     this.sharedService = sharedService;
-    this.crData = new CrData();
+    this.crData = new CrData(new ChangeRequest(null, null), null);
   }
 
   showNewCrDialog(mobData?: CrData) {

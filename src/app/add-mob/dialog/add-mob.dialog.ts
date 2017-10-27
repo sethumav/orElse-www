@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Renderer } from '@
 import { MdDialogRef } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 import { MobListService, MobData } from '../../service/mob-list.service';
+import { CrData, ChangeRequest} from '../../service/cr-list.service';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 import { SharedService } from '../../service/shared.service';
 import { Environment } from './environment';
@@ -37,11 +38,12 @@ export class AddMobDialogComponent {
     addRow() {
         //set the shared email subject 
         this.sharedService.updateGlobalEmailSubject(this.mobData.subject);
-
         //set the shared bridge Information 
         this.sharedService.updateGlobalBridgeInformation(this.mobData.bridgeInfo);
+        this.mobData.changeRequestId=this.sharedService.getGlobalCrData().changeRequest.id;
+        this.mobListService.addMobData(this.mobData);                  
         
-        this.mobListService.addMobData(this.mobData);
+   
         // clear form after added
         this.mobData = new MobData();
         this.mobData.subject =this.sharedService.getGlobalEmailSubject();
@@ -51,5 +53,12 @@ export class AddMobDialogComponent {
     editMobData(mobData: MobData){
         this.mobData = mobData;
         this.isEdit = true;
+    }    
+
+    saveMobData(mobData: MobData) {
+        if(this.sharedService.getGlobalCrData().mobId!= null){
+            mobData.id=this.sharedService.getGlobalCrData().mobId;
+        }
+        this.mobListService.saveMobData(mobData);          
     }    
 }

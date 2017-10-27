@@ -2,6 +2,7 @@
 
 <div class="buttonContainerDialog buttonContainer">
   <button id="btnMopDialogClose" md-dialog-close md-raised-button>Close</button>
+  <button id="btnSaveMopDialog" class="primary" (click)="saveMobData(mobData)" md-dialog-save md-raised-button *ngIf="isEdit">Save</button>
   <button id="btnAddEditMopDialog" class="primary" md-raised-button 
                                  (click)="addRow()" *ngIf="!isEdit">Add</button>
 <div>
