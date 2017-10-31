@@ -19,5 +19,8 @@ export const environment = {
   },
   changeRequestGetAllMopService: {
     url: 'http://localhost:8080/v2/methodOfProcedures/get/changeRequestId'    
+  },
+  methodOfProcedureSaveService: {
+  url:'http://localhost:8080/v2/methodOfProcedures/save'
   }
 };

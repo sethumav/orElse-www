@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <tr (click)="gotoMobList(crData)" *ngFor="let crData of crListService.crDatas">
-      <td>{{crData.name}}</td>
+      <td>{{crData.changeRequest.name}}</td>
     </tr>
   </tbody>
 </table>

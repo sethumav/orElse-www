@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Renderer } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
-import { CrListService, CrData } from '../../service/cr-list.service';
+import { CrListService, CrData, ChangeRequest } from '../../service/cr-list.service';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
@@ -18,7 +18,7 @@ export class AddCrDialogComponent {
         public dialogRef: MdDialogRef<AddCrDialogComponent>,
         private crListService: CrListService
     ) {
-        this.crData = new CrData();
+        this.crData = new CrData(new ChangeRequest(null, null), null);
     }
 
     addRow() {              
