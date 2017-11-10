@@ -39,12 +39,12 @@ node {
          
 
         sh 'curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash'
-        sh 'export NVM_DIR="$HOME/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm'
-        sh 'nvm install stable'
+        /*sh 'export NVM_DIR="$HOME/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm'
+       */ sh 'nvm install stable'
         
-         node -v
-         npm install
-         npm test
+         sh 'node -v'
+         sh 'npm install'
+         sh 'npm test'
 
        }  
 } catch (err) {
