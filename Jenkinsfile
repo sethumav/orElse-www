@@ -20,7 +20,8 @@ node('node') {
          sh 'npm install'
          sh 'npm test'
 
-       }  catch (err) {
+       }  
+} catch (err) {
 
         currentBuild.result = "FAILURE"
 
@@ -33,5 +34,4 @@ node('node') {
         throw err
     }     
 
-}
 }
