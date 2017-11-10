@@ -42,9 +42,9 @@ node {
         sh 'export NVM_DIR="$HOME/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm'
         sh 'nvm install stable'
         
-         sh 'node -v'
-         sh 'npm install'
-         sh 'npm test'
+         node -v
+         npm install
+         npm test
 
        }  
 } catch (err) {
