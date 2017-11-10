@@ -36,20 +36,29 @@ node {
          env.NODE_ENV = "test"
 
          print "Environment will be : ${env.NODE_ENV}"
-          def nodeHome = tool 'nodejs5'
-        env.PATH="${env.PATH}:${nodeHome}/bin"
+         
+
+        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+        nvm install stable
         
          sh 'node -v'
-         print "node version"
          sh 'npm install'
-         print "install done"
          sh 'npm test'
-         print "test done"
 
        }  
 } catch (err) {
 
-       print "error"
+        currentBuild.result = "FAILURE"
+
+            mail body: "project build error is here:" ,
+            from: 'vijay_sethumadavan@wsib.on.ca',
+            replyTo: 'sethumadavan@gmail.com',
+            subject: 'project build failed',
+            to: 'sethumadavan@gmail.com'
+
+        throw err
     }     
 
 }
