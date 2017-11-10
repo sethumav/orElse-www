@@ -40,21 +40,16 @@ node {
         env.PATH="${env.PATH}:${nodeHome}/bin"
         
          sh 'node -v'
+         print "node version"
          sh 'npm install'
+         print "install done"
          sh 'npm test'
+         print "test done"
 
        }  
 } catch (err) {
 
-        currentBuild.result = "FAILURE"
-
-            mail body: "project build error is here:" ,
-            from: 'vijay_sethumadavan@wsib.on.ca',
-            replyTo: 'sethumadavan@gmail.com',
-            subject: 'project build failed',
-            to: 'sethumadavan@gmail.com'
-
-        throw err
+       print "error"
     }     
 
 }
