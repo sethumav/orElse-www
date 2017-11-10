@@ -36,7 +36,9 @@ node {
          env.NODE_ENV = "test"
 
          print "Environment will be : ${env.NODE_ENV}"
-
+          def nodeHome = tool 'nodejs5'
+        env.PATH="${env.PATH}:${nodeHome}/bin"
+        ...
          sh 'node -v'
          sh 'npm install'
          sh 'npm test'
