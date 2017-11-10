@@ -20,7 +20,18 @@ node('node') {
          sh 'npm install'
          sh 'npm test'
 
-       }      
+       }  catch (err) {
+
+        currentBuild.result = "FAILURE"
+
+            mail body: "project build error is here:" ,
+            from: 'vijay_sethumadavan@wsib.on.ca',
+            replyTo: 'sethumadavan@gmail.com',
+            subject: 'project build failed',
+            to: 'sethumadavan@gmail.com'
+
+        throw err
+    }     
 
 }
 }
