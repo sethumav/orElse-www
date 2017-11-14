@@ -26,7 +26,7 @@ THE SOFTWARE.
 
 pipeline {
     agent any
-    tools {nodejs "Test NodeJS"}
+    tools {nodejs "test node js"}
 
     stages {
         stage('Build') {
