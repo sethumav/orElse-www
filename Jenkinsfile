@@ -24,25 +24,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-node {
+pipeline {
+    agent any
 
-
-    currentBuild.result = "SUCCESS"
-
-    try {
-
-       stage('Checkout'){
-
-          checkout scm
-       }
-
-       stage('Build'){
-
-         env.NODE_ENV = "test"
-
-         print "Environment will be : ${env.NODE_ENV}"
-
-        steps {
+    stages {
+        stage('Build') {
+            steps {
                 echo "Branch is ${env.BRANCH_NAME}..."
         
                 withNPM(npmrcConfig:'MyNpmrcConfig') {
@@ -50,17 +37,18 @@ node {
                     sh 'npm install'
                 }
             }
-       /*  sh 'node -v' */
-         //sh 'npm prune'
-         //sh 'npm install'
-         //sh 'npm test'
-
-       }     
-
-
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'                
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
-    catch (err) {
-        print "Error : ${err}"
-    }
-
 }
+
+
