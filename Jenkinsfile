@@ -33,7 +33,7 @@ pipeline {
             steps {
                 echo "Branch is ${env.BRANCH_NAME}..."
         
-                withNPM(npmrcConfig:'4c182c67-77d5-4566-b420-2407a8c2d921') {
+                withNPM(npmrcConfig:'abdea4df-4f4f-4caa-940f-2d73e05ebfb0') {
                     echo "Performing npm build..."
                     sh 'npm install'
                 }
@@ -45,7 +45,7 @@ pipeline {
                 
                 withNPM(npmrcConfig:'4c182c67-77d5-4566-b420-2407a8c2d921') {
                     echo "Performing npm build..."
-                    sh 'npm test'
+                    sh 'istanbul'
                 }              
             }
         }
