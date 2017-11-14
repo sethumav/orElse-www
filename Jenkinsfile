@@ -36,32 +36,31 @@ node {
           checkout scm
        }
 
-       stage('Test'){
+       stage('Build'){
 
          env.NODE_ENV = "test"
 
          print "Environment will be : ${env.NODE_ENV}"
 
+        steps {
+                echo "Branch is ${env.BRANCH_NAME}..."
+        
+                withNPM(npmrcConfig:'MyNpmrcConfig') {
+                    echo "Performing npm build..."
+                    sh 'npm install'
+                }
+            }
        /*  sh 'node -v' */
-         sh 'npm prune'
-         sh 'npm install'
-         sh 'npm test'
+         //sh 'npm prune'
+         //sh 'npm install'
+         //sh 'npm test'
 
        }     
 
 
     }
     catch (err) {
-
-        currentBuild.result = "FAILURE"
-
-            mail body: "project build error is here: ${env.BUILD_URL}" ,
-            from: 'xxxx@yyyy.com',
-            replyTo: 'yyyy@yyyy.com',
-            subject: 'project build failed',
-            to: 'zzzz@yyyyy.com'
-
-        throw err
+        print "Error : ${err}"
     }
 
 }
