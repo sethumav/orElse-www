@@ -45,7 +45,7 @@ pipeline {
                 
                 withNPM(npmrcConfig:'4c182c67-77d5-4566-b420-2407a8c2d921') {
                     echo "Performing npm build..."
-                    sh 'istanbul'
+                    sh 'npm test'
                 }              
             }
         }
