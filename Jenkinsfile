@@ -25,11 +25,7 @@ THE SOFTWARE.
 */
 
 pipeline {
-    agent {
-        docker {
-            image 'node:7.4'
-        }
-    }
+    agent any
 
     tools {nodejs "test node js"}
 
