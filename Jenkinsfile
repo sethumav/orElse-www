@@ -39,20 +39,20 @@ pipeline {
             steps {
                 echo "Branch is ${env.BRANCH_NAME}..."
         
-                withNPM(npmrcConfig:'abdea4df-4f4f-4caa-940f-2d73e05ebfb0') {
+               // withNPM(npmrcConfig:'abdea4df-4f4f-4caa-940f-2d73e05ebfb0') {
                     echo "Performing npm build..."
                     sh 'npm install'
-                }
+              //  }
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'  
                 
-                withNPM(npmrcConfig:'abdea4df-4f4f-4caa-940f-2d73e05ebfb0') {
+              //  withNPM(npmrcConfig:'abdea4df-4f4f-4caa-940f-2d73e05ebfb0') {
                     echo "Performing npm build..."
                     sh 'npm test'
-                }              
+              //  }              
             }
         }
         stage('Deploy') {
